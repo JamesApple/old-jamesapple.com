@@ -8,7 +8,8 @@
   ],
   "jsRules": {},
   "rules": {
-    "interface-name": false
+    "object-literal-sort-keys": false,
+    "import-sources-order": "any"
   },
   "rulesDirectory": []
 }

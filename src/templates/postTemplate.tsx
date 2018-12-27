@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { graphql } from 'gatsby'
 
-interface PostTemplateProps {
+interface IPostTemplateProps {
   data: {
     markdownRemark: {
       html: string
@@ -29,7 +29,7 @@ export const postTemplateQuery = graphql`
 `
 
 export default class PostTemplate extends React.PureComponent<
-  PostTemplateProps,
+  IPostTemplateProps,
   {}
 > {
   public render() {

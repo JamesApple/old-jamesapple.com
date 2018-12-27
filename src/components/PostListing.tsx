@@ -1,21 +1,18 @@
 import * as React from 'react'
 
-export interface PostListingProps {
-  title: string
-  date: string
-  path: string
-}
+import { Link } from 'gatsby'
 
-export default class PostListing extends React.PureComponent<
-  PostListingProps,
-  {}
-> {
+import { IPostDetail } from '../utils/convertMarkdownRemarkToPostDetail';
+
+export default class PostListing extends React.PureComponent<IPostDetail, {}> {
   public render() {
     const { title, date, path } = this.props
 
     return (
       <div>
-        {title} {date} {path}
+        <Link to={path}>
+          {title}--{date}
+        </Link>
       </div>
     )
   }

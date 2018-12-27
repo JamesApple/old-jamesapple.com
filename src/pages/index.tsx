@@ -1,48 +1,69 @@
 import * as React from 'react'
 
 import { graphql } from 'gatsby'
-import PostList from '../components/PostList'
+import IndexPage from '../components/IndexPage'
 
-interface IndexPageProps {
+import convertMarkdownRemarkToPostDetail, {
+  IMarkdownRemark,
+  IPostDetail
+} from '../utils/convertMarkdownRemarkToPostDetail'
+
+interface IIndexPageContainerProps {
   data: {
     site: {
       siteMetadata: {
         name: string
-        tagline: string
       }
+    }
+
+    allMarkdownRemark: {
+      edges: IMarkdownRemark[]
     }
   }
 }
 
-export const indexPageQuery = graphql`
-  query IndexPageQuery {
+export const indexPageContainerQuery = graphql`
+  query IndexPageContainerQuery {
     site {
       siteMetadata {
         name
-        tagline
+      }
+    }
+
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          id
+          excerpt(format: PLAIN, pruneLength: 200)
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            path
+            title
+          }
+        }
       }
     }
   }
 `
 
-export default class IndexPage extends React.PureComponent<IndexPageProps, {}> {
-  public render() {
-    const { name, tagline } = this.props.data.site.siteMetadata
+class IndexPageContainer extends React.PureComponent<
+  IIndexPageContainerProps,
+  {}
+> {
+  private get siteName(): string {
+    const { siteMetadata } = this.props.data.site
+    return siteMetadata.name
+  }
 
-    return (
-      <div>
-        <strong>{name}</strong>
-        <strong>{tagline}</strong>
-        <PostList
-          postDetails={[
-            {
-              date: '',
-              path: '/posts/babys-first-post',
-              title: 'Babys first post'
-            }
-          ]}
-        />
-      </div>
-    )
+  private get postDetails(): IPostDetail[] {
+    const { edges: remarks } = this.props.data.allMarkdownRemark
+    return remarks.map(convertMarkdownRemarkToPostDetail)
+  }
+
+  public render() {
+    const { siteName, postDetails } = this
+    return <IndexPage postDetails={postDetails} siteName={siteName} />
   }
 }
+
+export default IndexPageContainer

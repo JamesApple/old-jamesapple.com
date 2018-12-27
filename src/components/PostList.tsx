@@ -1,12 +1,13 @@
 import * as React from 'react'
 
-import PostListing, { PostListingProps } from './postListing'
+import { IPostDetail } from '../utils/convertMarkdownRemarkToPostDetail'
+import PostListing from './postListing'
 
-interface PostListProps {
-  postDetails: PostListingProps[]
+export interface IPostListProps {
+  postDetails: IPostDetail[]
 }
 
-export default class PostList extends React.PureComponent<PostListProps, {}> {
+export default class PostList extends React.PureComponent<IPostListProps, {}> {
   public render() {
     const { postDetails } = this.props
 
