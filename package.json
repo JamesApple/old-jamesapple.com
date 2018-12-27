@@ -9,12 +9,16 @@
     "start": "npm run develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
+    "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@types/react": "^16.7.18",
     "gatsby": "^2.0.76",
+    "gatsby-plugin-typescript": "^2.0.3",
     "react": "^16.5.1",
-    "react-dom": "^16.5.1"
+    "react-dom": "^16.5.1",
+    "typescript": "^3.2.2"
   },
   "repository": {
     "type": "git",
@@ -22,5 +26,12 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "devDependencies": {
+    "prettier": "^1.15.3",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-react": "^3.6.0"
   }
 }
