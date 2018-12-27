@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { graphql } from 'gatsby'
+import PostList from '../components/PostList'
 
 interface IndexPageProps {
   data: {
@@ -32,6 +33,15 @@ export default class IndexPage extends React.PureComponent<IndexPageProps, {}> {
       <div>
         <strong>{name}</strong>
         <strong>{tagline}</strong>
+        <PostList
+          postDetails={[
+            {
+              date: '',
+              path: '/posts/babys-first-post',
+              title: 'Babys first post'
+            }
+          ]}
+        />
       </div>
     )
   }
