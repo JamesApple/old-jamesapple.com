@@ -11,7 +11,7 @@
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "lint": "tslint 'src/**/*.{ts,tsx}'",
-    "gen": "graphql get-schema"
+    "gen": "graphql get-schema && graphql-schema-typescript generate-ts schema.graphql --output ./src/graphql-types.d.ts "
   },
   "dependencies": {
     "@types/react": "^16.7.18",
@@ -19,6 +19,7 @@
     "gatsby-plugin-typescript": "^2.0.3",
     "gatsby-source-filesystem": "^2.0.12",
     "gatsby-transformer-remark": "^2.1.17",
+    "graphql-schema-typescript": "^1.2.8",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "typescript": "^3.2.2"
@@ -31,8 +32,8 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "devDependencies": {
-    "prettier": "^1.15.3",
     "graphql-cli": "^3.0.3",
+    "prettier": "^1.15.3",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-config-standard": "^8.0.1",
