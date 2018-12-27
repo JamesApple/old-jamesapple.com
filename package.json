@@ -10,7 +10,8 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "lint": "tslint 'src/**/*.{ts,tsx}'"
+    "lint": "tslint 'src/**/*.{ts,tsx}'",
+    "gen": "graphql get-schema"
   },
   "dependencies": {
     "@types/react": "^16.7.18",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "prettier": "^1.15.3",
+    "graphql-cli": "^3.0.3",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-config-standard": "^8.0.1",
