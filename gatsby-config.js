@@ -1,5 +1,7 @@
 module.exports = {
-  plugins: [
-  `gatsby-plugin-typescript`
-  ],
+  siteMetadata: {
+    name: 'JamesApple.com',
+    tagline: 'Real cool stuff'
+  },
+  plugins: [`gatsby-plugin-typescript`]
 }
