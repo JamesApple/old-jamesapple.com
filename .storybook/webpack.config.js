@@ -27,6 +27,7 @@ module.exports = (baseConfig, env, defaultConfig) => {
     loader: require.resolve('ts-loader')
   })
   defaultConfig.resolve.extensions.push('.ts', '.tsx')
+  defaultConfig.resolve.modules = [path.resolve(__dirname, '../src'), 'node_modules']
 
   return defaultConfig
 }

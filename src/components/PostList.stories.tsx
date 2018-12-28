@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import UnthemedPostList from './PostList'
+import UnthemedPostList from 'components/PostList'
 import { storiesOf } from '@storybook/react'
-import withThemeProvider from '../utils/withThemeProvider'
+import withThemeProvider from 'utils/withThemeProvider'
 
 const excerpt = `Processing huge amounts of data on the web is always a
 back-end job—except when it’s not. Sometimes processing data in the browser via

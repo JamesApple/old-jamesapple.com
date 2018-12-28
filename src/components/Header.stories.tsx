@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import UnstyledHeader from './Header'
+import UnstyledHeader from 'components/Header'
 import { storiesOf } from '@storybook/react'
-import withThemeProvider from '../utils/withThemeProvider'
-import styled from '../styled-components'
+import withThemeProvider from 'utils/withThemeProvider'
+import styled from 'utils/styled-components'
 
 const Header = withThemeProvider(UnstyledHeader)
 

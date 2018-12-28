@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import PostListing from './PostListing'
-import { IPostDetail } from '../utils/convertMarkdownRemarkToPostDetail'
+import PostListing from 'components/PostListing'
+import { IPostDetail } from 'utils/convertMarkdownRemarkToPostDetail'
 
 export interface IPostListProps {
   postDetails: IPostDetail[]

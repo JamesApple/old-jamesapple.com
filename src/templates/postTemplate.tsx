@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { graphql } from 'gatsby'
-import PostPage from '../components/PostPage'
+import PostPage from 'components/PostPage'
 
 interface IPostTemplateProps {
   data: {

@@ -1,12 +1,12 @@
 import * as React from 'react'
 
 import { graphql } from 'gatsby'
-import IndexPage from '../components/IndexPage'
+import IndexPage from 'components/IndexPage'
 
 import convertMarkdownRemarkToPostDetail, {
   IMarkdownRemark,
   IPostDetail
-} from '../utils/convertMarkdownRemarkToPostDetail'
+} from 'utils/convertMarkdownRemarkToPostDetail'
 
 interface IIndexPageContainerProps {
   data: {

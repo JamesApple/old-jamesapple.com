@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import UnthemedPostPage from './PostPage'
+import UnthemedPostPage from 'components/PostPage'
 import { storiesOf } from '@storybook/react'
-import withThemeProvider from '../utils/withThemeProvider'
+import withThemeProvider from 'utils/withThemeProvider'
 
 const PostPage = withThemeProvider(UnthemedPostPage)
 

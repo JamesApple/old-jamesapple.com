@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import UnthemedLogo from './Logo'
+import UnthemedLogo from 'components/Logo'
 import { storiesOf } from '@storybook/react'
-import withThemeProvider from '../utils/withThemeProvider';
+import withThemeProvider from 'utils/withThemeProvider';
 
 const Logo = withThemeProvider(UnthemedLogo)
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import theme from '../theme'
-import { ThemeProvider } from '../styled-components'
+import theme from 'theme'
+import { ThemeProvider } from 'utils/styled-components'
 
 const withThemeProvider = <P extends object>(
   Component: React.ComponentType<P>

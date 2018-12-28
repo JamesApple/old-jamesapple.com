@@ -1,4 +1,4 @@
-import { ITheme } from './theme'
+import { ITheme } from 'theme'
 
 export const systemTextStyle = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};

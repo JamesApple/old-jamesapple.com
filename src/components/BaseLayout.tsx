@@ -1,10 +1,10 @@
 import * as React from 'react'
-import theme from '../theme'
+import theme from 'theme'
 
-import { ThemeProvider } from '../styled-components'
+import { ThemeProvider } from 'utils/styled-components'
 import { Helmet } from 'react-helmet'
-import BaseStyles from '../BaseStyles'
-import Header from './Header'
+import BaseStyles from 'BaseStyles'
+import Header from 'components/Header'
 
 export default class BaseLayout extends React.PureComponent<{}, {}> {
   public render() {

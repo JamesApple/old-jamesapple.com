@@ -1,7 +1,7 @@
 import * as React from 'react'
-import styled from '../styled-components'
+import styled from 'utils/styled-components'
 import { Link } from 'gatsby'
-import { logoTextStyle, taglineTextStyle } from '../fontStyles';
+import { logoTextStyle, taglineTextStyle } from 'fontStyles';
 
 const Container = styled(Link)`
   text-decoration: none;
