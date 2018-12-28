@@ -16,11 +16,14 @@ const Name = styled.span`
 const Tagline = styled.span`
   ${tagline};
 `
+interface ILogoProps {
+  className?: string
+}
 
-export default class Logo extends React.PureComponent<{}, {}> {
+export default class Logo extends React.PureComponent<ILogoProps, {}> {
   public render() {
     return (
-      <Container to={'/'}>
+      <Container className={this.props.className} to={'/'}>
         <Name>James Apple</Name>
         <br/>
         <Tagline>Software Engineer</Tagline>

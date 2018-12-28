@@ -38,8 +38,8 @@ letter-spacing: 2.8px;
 
 export const navItem = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.headerFamily};
-font-weight: 700;
-font-size: 8px;
+font-weight: 400;
+font-size: 12px;
 color: #FFFFFF;
 letter-spacing: 1.25px;
 `
