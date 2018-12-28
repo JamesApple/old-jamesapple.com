@@ -1,8 +1,5 @@
 import * as React from 'react'
-
-
-import Image from 'gatsby-image'
-import { Link } from 'gatsby'
+import PreviewMarkdown from 'models/PreviewMarkdown';
 import styled from 'utils/styled-components'
 import {
   systemTextStyle,
@@ -11,12 +8,12 @@ import {
   contentTextStyle
 } from 'fontStyles'
 
+
+import Image from 'gatsby-image'
+import { Link } from 'gatsby'
+
 interface IPostListingProps {
-  title: string
-  date: string
-  path: string
-  excerpt: string
-  headerImage: FluidImage | null
+  previewMarkdown: PreviewMarkdown
 }
 
 const Date = styled.time`
@@ -42,7 +39,8 @@ const HeaderImage = styled(Image)`
 
 export default class PostListing extends React.PureComponent<IPostListingProps, {}> {
   public render() {
-    const { headerImage, excerpt, title, date, path } = this.props
+    const { headerImage, excerpt, title, date, path } = this.props.previewMarkdown
+
     const summary = 'A short gander through the woods allows a great many adventures'
 
     return (

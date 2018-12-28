@@ -1,16 +1,17 @@
 import * as React from 'react'
 
 import PostListing from 'components/PostListing'
-import { IPostDetail } from 'utils/convertMarkdownRemarkToPostDetail'
+import PreviewMarkdown from 'models/PreviewMarkdown';
 
 export interface IPostListProps {
-  postDetails: IPostDetail[]
+  previewMarkdowns: PreviewMarkdown[]
 }
+
 export default class PostList extends React.PureComponent<IPostListProps, {}> {
   public render() {
-    const { postDetails } = this.props
-    const listings = postDetails.map((postDetail, index) => (
-      <PostListing key={index} {...postDetail} />
+    const { previewMarkdowns } = this.props
+    const listings = previewMarkdowns.map((previewMarkdown, index) => (
+      <PostListing key={index} previewMarkdown={previewMarkdown} />
     ))
 
     return <>{listings}</>

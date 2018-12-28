@@ -16,7 +16,6 @@ export const postTemplateQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
-      ...Frontmatter
     }
   }
 `

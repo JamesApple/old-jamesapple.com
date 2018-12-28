@@ -1,15 +1,20 @@
 import * as React from 'react'
 
-import PostList, { IPostListProps } from 'components/PostList'
+import PostList  from 'components/PostList'
 import BaseLayout from 'components/BaseLayout'
+import PreviewMarkdown from 'models/PreviewMarkdown';
+
+interface IPostListProps {
+  previewMarkdowns: PreviewMarkdown[]
+}
 
 export default class IndexPage extends React.PureComponent<IPostListProps, {}> {
   public render() {
-    const { postDetails } = this.props
+    const { previewMarkdowns } = this.props
 
     return (
       <BaseLayout>
-        <PostList postDetails={postDetails} />
+        <PostList previewMarkdowns={previewMarkdowns} />
       </BaseLayout>
     )
   }
