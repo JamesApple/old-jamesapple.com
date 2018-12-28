@@ -50,10 +50,6 @@ class IndexPageContainer extends React.PureComponent<
   IIndexPageContainerProps,
   {}
 > {
-  private get siteName(): string {
-    const { siteMetadata } = this.props.data.site
-    return siteMetadata.name
-  }
 
   private get postDetails(): IPostDetail[] {
     const { edges: remarks } = this.props.data.allMarkdownRemark
@@ -61,8 +57,8 @@ class IndexPageContainer extends React.PureComponent<
   }
 
   public render() {
-    const { siteName, postDetails } = this
-    return <IndexPage postDetails={postDetails} siteName={siteName} />
+    const { postDetails } = this
+    return <IndexPage postDetails={postDetails} />
   }
 }
 

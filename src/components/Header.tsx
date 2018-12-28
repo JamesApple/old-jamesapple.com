@@ -18,6 +18,10 @@ const NavItem = styled(Link)`
   ${navItem}
   text-decoration: none;
   text-transform: uppercase;
+  padding: 12px;
+  &:hover {
+    color: orange;
+  }
 `
 
 const NavBar = styled.nav`
@@ -25,7 +29,6 @@ const NavBar = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 12px;
 `
 
 const Logo = styled(BaseLogo)`
