@@ -1,11 +1,22 @@
+import 'typeface-oswald'
+import 'typeface-clear-sans'
+
 export interface ITheme {
-  heroFamily: string[]
-  headerFamily: string[]
-  bodyFamily: string[]
+  headerFamily: string
+  bodyFamily: string
+  gray: {
+    light: string
+    mid: string
+    dark: string
+  }
 }
 
 export default {
-  heroFamily: ['Oswald', 'sans-serif'],
-  headerFamily: ['Lato', 'sans-serif'],
-  bodyFamily: ['Merriweather', 'Georgia', 'serif']
+  headerFamily: 'Oswald, sans-serif',
+  bodyFamily: 'Clear Sans, Georgia, serif',
+  gray: {
+    light: '#6E6E6E',
+    mid: '#555555',
+    dark: '#212121'
+  }
 }
