@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { graphql } from 'gatsby'
-import BaseLayout from '../components/BaseLayout'
+import PostPage from '../components/PostPage'
 
 interface IPostTemplateProps {
   data: {
@@ -37,13 +37,7 @@ export default class PostTemplate extends React.PureComponent<
     const { frontmatter, html } = this.props.data.markdownRemark
 
     return (
-      <BaseLayout>
-        <div>
-          <h1>{frontmatter.title}</h1>
-          <h2>{frontmatter.date}</h2>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-        </div>
-      </BaseLayout>
+      <PostPage title={frontmatter.title} date={frontmatter.date} html={html} />
     )
   }
 }
