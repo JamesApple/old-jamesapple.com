@@ -13,6 +13,7 @@ font-size: 24px;
 font-weight: 700;
 line-height: 25px;
 `
+
 export const subtext = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};
 font-size: 12px;
@@ -26,7 +27,6 @@ color: ${theme.gray.dark};
 font-weight: 700;
 font-size: 32px;
 letter-spacing: 5px;
-text-align: center;
 `
 
 export const tagline = ({ theme }: { theme: ITheme }) => `
