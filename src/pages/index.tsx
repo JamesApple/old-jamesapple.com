@@ -3,43 +3,22 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import IndexPage from 'components/IndexPage'
 
-import convertMarkdownRemarkToPostDetail, {
-  IMarkdownRemark,
-  IPostDetail
-} from 'utils/convertMarkdownRemarkToPostDetail'
+import { IPreviewMarkdownFragment } from 'models/PreviewMarkdown';
 
 interface IIndexPageContainerProps {
   data: {
-    site: {
-      siteMetadata: {
-        name: string
-      }
-    }
-
     allMarkdownRemark: {
-      edges: IMarkdownRemark[]
+      edges: IPreviewMarkdownFragment[]
     }
   }
 }
 
 export const indexPageContainerQuery = graphql`
   query IndexPageContainerQuery {
-    site {
-      siteMetadata {
-        name
-      }
-    }
-
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
-          id
-          excerpt(format: PLAIN, pruneLength: 200)
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            path
-            title
-          }
+          ...PreviewMarkdown
         }
       }
     }

@@ -37,6 +37,7 @@ storiesOf('PostPage', module).add('Default', () => {
     <PostPage
       title={'Redefining JavaScript Dynamically at Runtime'}
       date={'December 2019'}
+      headerImage={null}
       html={html}
     />
   )

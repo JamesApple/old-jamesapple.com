@@ -17,7 +17,8 @@ const postDetails = [
     small things to trip up a developer.
       `,
     path: '/posts/opression',
-    date: 'December 2018'
+    date: 'December 2018',
+    headerImage: null
   }
 ]
 

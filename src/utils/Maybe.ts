@@ -24,6 +24,10 @@ class Maybe<T> {
     return this.value == null ? Maybe.none<R>() : fn(this.value)
   }
 
+  public get any(): boolean {
+    return this.value !== null
+  }
+
   public getOr(defaultValue: T) {
     return this.value === null ? defaultValue : this.value
   }

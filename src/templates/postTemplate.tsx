@@ -7,11 +7,7 @@ interface IPostTemplateProps {
   data: {
     markdownRemark: {
       html: string
-      frontmatter: {
-        date: string
-        path: string
-        title: string
-      }
+      frontmatter: Frontmatter
     }
   }
 }
@@ -20,24 +16,30 @@ export const postTemplateQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
-      frontmatter {
-        date(formatString: "MMMM YYYY")
-        path
-        title
-      }
+      ...Frontmatter
     }
   }
 `
 
-export default class PostTemplate extends React.PureComponent<
-  IPostTemplateProps,
-  {}
-> {
+export default class PostTemplate extends React.PureComponent<IPostTemplateProps, {}> {
+  private get fluidImage(): null | FluidImage {
+    const { headerImage } = this.props.data.markdownRemark.frontmatter
+    if (!headerImage) return null
+    return headerImage.childImageSharp.fluid
+  }
+
   public render() {
     const { frontmatter, html } = this.props.data.markdownRemark
 
     return (
-      <PostPage title={frontmatter.title} date={frontmatter.date} html={html} />
+      <>
+        <PostPage
+          headerImage={this.fluidImage}
+          title={frontmatter.title}
+          date={frontmatter.date}
+          html={html}
+        />
+      </>
     )
   }
 }

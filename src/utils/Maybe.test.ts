@@ -33,7 +33,7 @@ describe('Maybe', () => {
     const subject = Maybe.some('String')
     const testFn = (_m: Maybe<string>) => Maybe.none()
     it('Accepts a function that returns a maybe', () => {
-    expect(testFn(subject).getOr('Success!')).toEqual('Success!')
+      expect(testFn(subject).getOr('Success!')).toEqual('Success!')
     })
   })
 })
