@@ -1,5 +1,5 @@
 import { createGlobalStyle } from './styled-components'
-import normalize from 'styled-normalize'
+import normalize from './normalize';
 
 import { body } from './fontStyles';
 

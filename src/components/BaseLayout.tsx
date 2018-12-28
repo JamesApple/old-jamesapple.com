@@ -4,7 +4,7 @@ import theme from '../theme'
 import { ThemeProvider } from '../styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import BaseStyles from '../BaseStyles';
+import BaseStyles from '../BaseStyles'
 
 interface IBaseLayoutQuery {
   site: {
@@ -41,12 +41,12 @@ export default class BaseLayout extends React.PureComponent<{}, {}> {
                   content: 'The site of awesomeness'
                 }
               ]}
-              />
+            />
 
             <ThemeProvider theme={theme}>
               <>
-              <BaseStyles />
-              {children}
+                <BaseStyles />
+                {children}
               </>
             </ThemeProvider>
           </>
