@@ -39,5 +39,5 @@ storiesOf('PostPage', module).add('Default', () => {
       date={'December 2019'}
       html={html}
     />
-    )
+  )
 })

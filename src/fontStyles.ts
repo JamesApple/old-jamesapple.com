@@ -1,45 +1,50 @@
 import { ITheme } from './theme'
 
-export const body = ({ theme }: { theme: ITheme }) => `
+export const systemTextStyle = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};
-color: ${theme.gray.dark};
-font-size: 16px;
-`
+color: ${theme.gray.mid};
 
-export const postTitle = ({ theme }: { theme: ITheme }) => `
-font-family: ${theme.bodyFamily};
-color: ${theme.gray.dark};
-font-size: 24px;
+text-transform: uppercase;
+
 font-weight: 700;
-line-height: 25px;
-`
-
-export const subtext = ({ theme }: { theme: ITheme }) => `
-font-family: ${theme.bodyFamily};
+letter-spacing: 2px;
 font-size: 12px;
-color: ${theme.gray.light};
-letter-spacing: 1.25px;
 `
 
-export const logo = ({ theme }: { theme: ITheme }) => `
-font-family: ${theme.headerFamily};
-color: ${theme.gray.dark};
-font-weight: 700;
+export const postTitleTextStyle = ({ theme }: { theme: ITheme }) => `
+font-family: ${theme.bodyFamily};
+color: ${theme.gray.mid};
+
 font-size: 32px;
-letter-spacing: 5px;
+font-weight: 700;
 `
 
-export const tagline = ({ theme }: { theme: ITheme }) => `
+export const contentTextStyle = ({ theme }: { theme: ITheme }) => `
+font-family: ${theme.bodyFamily};
+color: ${theme.gray.dark};
+
+font-size: 16px;
+font-weight: 400;
+`
+
+export const postSummaryTextStyle = ({ theme }: { theme: ITheme }) => `
+font-family: ${theme.bodyFamily};
+font-style: italic;
+font-size: 16px;
+color: ${theme.gray.light};
+`
+
+export const taglineTextStyle = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};
 color: ${theme.gray.mid};
 font-size: 16px;
 letter-spacing: 2.8px;
 `
 
-export const navItem = ({ theme }: { theme: ITheme }) => `
+export const logoTextStyle = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.headerFamily};
-font-weight: 400;
-font-size: 12px;
-color: #FFFFFF;
-letter-spacing: 1.25px;
+color: ${theme.gray.dark};
+font-weight: 700;
+font-size: 32px;
+letter-spacing: 5px;
 `

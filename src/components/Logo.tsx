@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from '../styled-components'
 import { Link } from 'gatsby'
-import { logo, tagline } from '../fontStyles';
+import { logoTextStyle, taglineTextStyle } from '../fontStyles';
 
 const Container = styled(Link)`
   text-decoration: none;
@@ -11,10 +11,10 @@ const Container = styled(Link)`
 `
 
 const Name = styled.span`
-  ${logo};
+  ${logoTextStyle};
 `
 const Tagline = styled.span`
-  ${tagline};
+  ${taglineTextStyle};
 `
 interface ILogoProps {
   className?: string
