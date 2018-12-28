@@ -10,6 +10,7 @@ export interface IPostListProps {
 
 const ListingContainer = styled.div`
   margin: auto;
+  margin-top: 64px;
   max-width: 70ch;
 `
 

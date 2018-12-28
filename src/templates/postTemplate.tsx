@@ -21,7 +21,7 @@ export const postTemplateQuery = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
-        date
+        date(formatString: "MMMM YYYY")
         path
         title
       }
