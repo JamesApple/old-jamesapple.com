@@ -9,7 +9,8 @@
   "jsRules": {},
   "rules": {
     "object-literal-sort-keys": false,
-    "import-sources-order": "any"
+    "ordered-imports": [false],
+    "object-literal-sort-keys": [false]
   },
   "rulesDirectory": []
 }

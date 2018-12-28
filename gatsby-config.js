@@ -1,7 +1,6 @@
 module.exports = {
   siteMetadata: {
-    name: 'JamesApple.com',
-    tagline: 'Real cool stuff'
+    name: 'James Apple'
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -12,6 +11,7 @@ module.exports = {
         path: `${__dirname}/posts`
       }
     },
+    `gatsby-plugin-styled-components`,
     `gatsby-transformer-remark`
   ]
 }
