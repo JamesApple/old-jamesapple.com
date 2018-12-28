@@ -1,18 +1,30 @@
 import * as React from 'react'
 
+import PostListing from './PostListing'
 import { IPostDetail } from '../utils/convertMarkdownRemarkToPostDetail'
-import PostListing from './postListing'
+import styled from '../styled-components'
 
 export interface IPostListProps {
   postDetails: IPostDetail[]
 }
 
+const ListingContainer = styled.div`
+  margin: auto;
+  max-width: 70ch;
+`
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export default class PostList extends React.PureComponent<IPostListProps, {}> {
   public render() {
     const { postDetails } = this.props
-
-    return postDetails.map((postDetail, index) => (
-      <PostListing key={index} {...postDetail} />
+    const listings = postDetails.map((postDetail, index) => (
+      <PostListing as={ListingContainer} key={index} {...postDetail} />
     ))
+
+    return <ListContainer>{listings}</ListContainer>
   }
 }

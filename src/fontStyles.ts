@@ -3,15 +3,21 @@ import { ITheme } from './theme'
 export const body = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};
 color: ${theme.gray.dark};
-font-size: 12px;
+font-size: 16px;
 `
 
 export const postTitle = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};
-color: ${theme.gray.light};
+color: ${theme.gray.dark};
 font-size: 24px;
 font-weight: 700;
 line-height: 25px;
+`
+export const subtext = ({ theme }: { theme: ITheme }) => `
+font-family: ${theme.bodyFamily};
+font-size: 12px;
+color: ${theme.gray.light};
+letter-spacing: 1.25px;
 `
 
 export const logo = ({ theme }: { theme: ITheme }) => `

@@ -11,18 +11,18 @@ export interface IMarkdownRemark {
 }
 
 export interface IPostDetail {
-  id: string
   title: string
   date: string
   path: string
   excerpt: string
 }
 
-function convertMarkdownRemarkToPostDetail(remark: IMarkdownRemark): IPostDetail {
-  const { id, excerpt, frontmatter } = remark.node
+function convertMarkdownRemarkToPostDetail(
+  remark: IMarkdownRemark
+): IPostDetail {
+  const { excerpt, frontmatter } = remark.node
   const { title, path, date } = frontmatter
   return {
-    id,
     excerpt,
     path,
     title,
