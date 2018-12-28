@@ -5,6 +5,7 @@ font-family: ${theme.bodyFamily};
 color: ${theme.gray.mid};
 
 text-transform: uppercase;
+text-decoration: none;
 
 font-weight: 700;
 letter-spacing: 2px;
