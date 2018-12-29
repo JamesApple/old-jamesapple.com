@@ -3,15 +3,7 @@ import { Link } from 'gatsby'
 import BaseLogo from 'components/Logo'
 import styled from 'utils/styled-components'
 import { systemTextStyle } from 'fontStyles'
-
-interface INavItem {
-  title: string
-  path: string
-}
-
-interface IHeaderProps {
-  navItems: INavItem[]
-}
+import ContentWidth from './ContentWidth'
 
 const NavItems = styled.div`
   display: flex;
@@ -28,33 +20,41 @@ const NavBarContainer = styled.nav`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 8px 0;
-  box-shadow: inset 0 -2px 0 0 #eeeeee;
+  padding: 0.5rem 0;
 `
 
-const NavItem = styled(Link)`
-  ${systemTextStyle}
-  padding: 16px;
-  margin: 0 16px;
+const navItemStyles = (props: any) => `
+  ${systemTextStyle(props)}
+  padding: 1rem;
+  margin: 0 1rem;
+  &:hover {
+    color: black;
+  }
+`
+
+const InternalLink = styled(Link)`
+  ${navItemStyles}
+`
+
+const ExternalLink = styled.a`
+  ${navItemStyles}
 `
 
 const Logo = styled(BaseLogo)``
 
-export default class Header extends React.PureComponent<IHeaderProps, {}> {
+export default class Header extends React.PureComponent<{}, {}> {
   public render() {
-    const { navItems } = this.props
-
     return (
-      <NavBarContainer>
-        <Logo />
-        <NavItems>
-          {navItems.map(({ path, title }, index) => (
-            <NavItem key={index} to={path}>
-              {title}
-            </NavItem>
-          ))}
-        </NavItems>
-      </NavBarContainer>
+      <ContentWidth>
+        <NavBarContainer>
+          <Logo />
+          <NavItems>
+            <InternalLink to={'/'}>Home</InternalLink>
+            <InternalLink to={'/posts'}>Posts</InternalLink>
+            <ExternalLink href="https://twitter.com/jamesappledev">Twitter</ExternalLink>
+          </NavItems>
+        </NavBarContainer>
+      </ContentWidth>
     )
   }
 }

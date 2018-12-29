@@ -17,8 +17,8 @@ const Container = styled.nav`
 
 const itemStyles = (props: any) => `
 ${systemTextStyle(props)}
-font-size: 16px;
-padding: 16px;
+font-size: 1rem;
+padding: 1rem;
 `
 
 const Item = styled.span`

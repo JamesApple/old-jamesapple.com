@@ -1,11 +1,17 @@
 import * as React from 'react'
 
 import PostListing from 'components/PostListing'
-import PreviewMarkdown from 'models/PreviewMarkdown';
+import PreviewMarkdown from 'models/PreviewMarkdown'
+import styled from 'utils/styled-components'
+import ContentWidth from './ContentWidth'
 
 export interface IPostListProps {
   previewMarkdowns: PreviewMarkdown[]
 }
+
+const Container = styled.article`
+  padding-top: 4rem;
+`
 
 export default class PostList extends React.PureComponent<IPostListProps, {}> {
   public render() {
@@ -14,6 +20,10 @@ export default class PostList extends React.PureComponent<IPostListProps, {}> {
       <PostListing key={index} previewMarkdown={previewMarkdown} />
     ))
 
-    return <>{listings}</>
+    return (
+      <ContentWidth>
+        <Container>{listings}</Container>
+      </ContentWidth>
+    )
   }
 }

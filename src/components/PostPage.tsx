@@ -2,15 +2,15 @@ import * as React from 'react'
 import Image from 'gatsby-image'
 
 import BaseLayout from 'components/BaseLayout'
-import styled from 'utils/styled-components';
-import DisplayMarkdown from 'models/DisplayMarkdown';
+import styled from 'utils/styled-components'
+import DisplayMarkdown from 'models/DisplayMarkdown'
 
 interface IPostPageProps {
   displayMarkdown: DisplayMarkdown
 }
 
 const HeaderImage = styled(Image)`
-  max-width: 128px
+  max-width: 128px;
 `
 
 export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
@@ -19,9 +19,9 @@ export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
 
     return (
       <BaseLayout>
-        {!!headerImage && <HeaderImage fluid={headerImage}/>}
-        {title}  {date}
-        <div dangerouslySetInnerHTML={{ __html: html }}/>
+        {!!headerImage && <HeaderImage fluid={headerImage} />}
+        {title} {date}
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       </BaseLayout>
     )
   }

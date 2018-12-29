@@ -25,13 +25,7 @@ export default class BaseLayout extends React.PureComponent<{}, {}> {
         <ThemeProvider theme={theme}>
           <>
             <BaseStyles />
-            <Header
-              navItems={[
-                { title: 'Home', path: '/' },
-                { title: 'Contact', path: '/' },
-                { title: 'Posts', path: '/' }
-              ]}
-            />
+            <Header />
             {children}
           </>
         </ThemeProvider>

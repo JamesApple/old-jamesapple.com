@@ -8,12 +8,6 @@ const Header = withThemeProvider(UnstyledHeader)
 storiesOf('Header', module)
   .add('Default', () => {
     return (
-      <Header
-        navItems={[
-          { title: 'Pages', path: '/pages' },
-          { title: 'About', path: '/about' },
-          { title: 'Contact', path: '/contact' }
-        ]}
-      />
+      <Header />
     )
   })
