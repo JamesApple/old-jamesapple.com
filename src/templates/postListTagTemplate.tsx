@@ -38,6 +38,7 @@ export const postListQuery = graphql`
 
 export default class PostListTemplate extends React.PureComponent<IIndexPageContainerProps, {}> {
   private get previewMarkdowns(): PreviewMarkdown[] {
+    if(!this.props.data.allMarkdownRemark) return []
     const { edges } = this.props.data.allMarkdownRemark
     return edges.map(({ node: remark }) => PreviewMarkdown.fromFragment(remark))
   }
