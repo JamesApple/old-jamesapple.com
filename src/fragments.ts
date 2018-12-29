@@ -31,7 +31,7 @@ export const previewMarkdownFragment = graphql`
 
       headerImage {
         childImageSharp {
-          fluid(maxWidth: 500, maxHeight: 500) {
+          fluid(maxWidth: 1800, maxHeight: 600) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }

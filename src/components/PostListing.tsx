@@ -22,6 +22,10 @@ const Date = styled.time`
 const Title = styled(Link)`
   ${postTitleTextStyle}
   text-decoration: none;
+
+  &:hover {
+    color: black;
+  }
 `
 
 const Summary = styled.p`
@@ -35,10 +39,13 @@ const Excerpt = styled.p`
 const HeaderImage = styled(Image)`
   height: auto;
   max-width: 100%;
+
 `
 
 const Container = styled.div`
   margin-bottom: 4rem;
+  max-width: 80ch;
+  margin: auto;
 `
 
 export default class PostListing extends React.PureComponent<IPostListingProps, {}> {

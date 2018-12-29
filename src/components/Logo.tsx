@@ -12,6 +12,10 @@ const Container = styled(Link)`
 
 const Name = styled.span`
   ${logoTextStyle};
+
+  &:hover {
+    color: black;
+  }
 `
 const Tagline = styled.span`
   ${taglineTextStyle};

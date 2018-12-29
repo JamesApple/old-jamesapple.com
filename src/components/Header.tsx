@@ -9,18 +9,22 @@ const NavItems = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-self: center;
 
-  @media (min-width: 700px) {
-    align-self: center;
+  @media (min-width: 60rem) {
     margin-left: auto;
   }
 `
 
 const NavBarContainer = styled.nav`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   padding: 0.5rem 0;
+
+  @media (min-width: 60rem)  {
+    flex-direction: row;
+  }
 `
 
 const navItemStyles = (props: any) => `
@@ -40,7 +44,9 @@ const ExternalLink = styled.a`
   ${navItemStyles}
 `
 
-const Logo = styled(BaseLogo)``
+const Logo = styled(BaseLogo)`
+  margin: 1.5rem 0;
+`
 
 export default class Header extends React.PureComponent<{}, {}> {
   public render() {
