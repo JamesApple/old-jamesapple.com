@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import PreviewMarkdown, { IPreviewMarkdownFragment } from 'models/PreviewMarkdown'
 import PostListPage from 'components/PostListPage'
+import SEO from 'components/SEO';
 
 interface IIndexPageContainerProps {
   pageContext: {
@@ -43,11 +44,19 @@ export default class PostListTemplate extends React.PureComponent<IIndexPageCont
     const { pageCount, currentPage } = this.props.pageContext
 
     return (
-      <PostListPage
-        previewMarkdowns={this.previewMarkdowns}
-        pageCount={pageCount}
-        currentPage={currentPage}
-      />
+      <>
+        <SEO
+          title={`Posts Page ${currentPage}`}
+          description="Software Engineering Blog of James Apple."
+          pathname={`/posts${currentPage === 1 ? '' : `/${currentPage}`}`}
+        />
+
+        <PostListPage
+          previewMarkdowns={this.previewMarkdowns}
+          pageCount={pageCount}
+          currentPage={currentPage}
+        />
+      </>
     )
   }
 }

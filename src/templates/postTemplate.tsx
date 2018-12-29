@@ -2,6 +2,7 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import PostPage from 'components/PostPage'
 import DisplayMarkdown, { IDisplayMarkdownFragment } from 'models/DisplayMarkdown'
+import SEO from 'components/SEO'
 
 interface IPostTemplateProps {
   data: {
@@ -24,6 +25,18 @@ export default class PostTemplate extends React.PureComponent<IPostTemplateProps
   }
 
   public render() {
-    return <PostPage displayMarkdown={this.displayMarkdown} />
+    const { displayMarkdown } = this
+    return (
+      <>
+        <SEO
+          title={displayMarkdown.title}
+          description={displayMarkdown.description}
+          pathname={displayMarkdown.path}
+          article={true}
+        />
+
+        <PostPage displayMarkdown={displayMarkdown} />
+      </>
+    )
   }
 }
