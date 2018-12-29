@@ -32,7 +32,6 @@ export default class BaseLayout extends React.PureComponent<{}, {}> {
                 { title: 'Posts', path: '/' }
               ]}
             />
-
             {children}
           </>
         </ThemeProvider>

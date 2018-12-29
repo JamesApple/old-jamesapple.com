@@ -1,8 +1,7 @@
 import * as React from 'react'
-
 import { graphql } from 'gatsby'
 import PostPage from 'components/PostPage'
-import DisplayMarkdown, { IDisplayMarkdownFragment } from 'models/DisplayMarkdown';
+import DisplayMarkdown, { IDisplayMarkdownFragment } from 'models/DisplayMarkdown'
 
 interface IPostTemplateProps {
   data: {
@@ -19,14 +18,12 @@ export const postTemplateQuery = graphql`
 `
 
 export default class PostTemplate extends React.PureComponent<IPostTemplateProps, {}> {
+  private get displayMarkdown(): DisplayMarkdown {
+    const { markdownRemark } = this.props.data
+    return DisplayMarkdown.fromFragment(markdownRemark)
+  }
 
   public render() {
-    const { markdownRemark } = this.props.data
-
-    return (
-      <PostPage
-        displayMarkdown={DisplayMarkdown.fromFragment(markdownRemark)}
-        />
-    )
+    return <PostPage displayMarkdown={this.displayMarkdown} />
   }
 }

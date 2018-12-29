@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby'
 
-export interface IDisplayMarkdown {
+interface IDisplayMarkdown {
   date: string
   path: string
   title: string

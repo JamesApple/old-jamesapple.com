@@ -1,8 +1,6 @@
 import * as React from 'react'
-
 import { graphql } from 'gatsby'
 import IndexPage from 'components/IndexPage'
-
 import PreviewMarkdown, { IPreviewMarkdownFragment } from 'models/PreviewMarkdown'
 
 interface IIndexPageContainerProps {
@@ -27,9 +25,8 @@ export const indexPageContainerQuery = graphql`
 
 class IndexPageContainer extends React.PureComponent<IIndexPageContainerProps, {}> {
   private get previewMarkdowns(): PreviewMarkdown[] {
-    const { edges: remarks } = this.props.data.allMarkdownRemark
-
-    return remarks.map(({ node }) => PreviewMarkdown.fromFragment(node))
+    const { edges } = this.props.data.allMarkdownRemark
+    return edges.map(({ node: remark }) => PreviewMarkdown.fromFragment(remark))
   }
 
   public render() {
