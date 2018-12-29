@@ -1,8 +1,13 @@
 const path = require('path')
 
+const { NODE_ENV } = process.env
+const isProd = NODE_ENV !== 'development'
+
 const createPostPages = (res, createPage) => {
   const postTemplate = path.resolve(`src/templates/postTemplate.tsx`)
   res.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    // Hide drafts
+    if (isProd && node.frontmatter.draft) return
     createPage({
       path: node.frontmatter.path,
       component: postTemplate,
@@ -15,7 +20,8 @@ const createPaginatedPostListingPages = (res, createPage) => {
   const postListTemplate = path.resolve(`src/templates/postListTemplate.tsx`)
   const postsPerPage = 6
   const posts = res.data.allMarkdownRemark.edges
-  const numPages = Math.ceil(posts.length / postsPerPage)
+  const livePosts = isProd ? posts.filter(({ node }) => node.frontmatter.draft) : posts
+  const numPages = Math.ceil(livePosts.length / postsPerPage)
 
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
@@ -41,6 +47,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             frontmatter {
               path
+              draft
             }
           }
         }
