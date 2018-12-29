@@ -23,7 +23,7 @@ export const postListQuery = graphql`
   query postListTagQuery($tag: String, $skip: Int!, $limit: Int!) {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { draft: { ne: true } tags: { in: [$tag] } } }
       limit: $limit
       skip: $skip
     ) {
