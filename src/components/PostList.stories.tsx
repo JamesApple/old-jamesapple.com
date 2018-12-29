@@ -21,6 +21,7 @@ const previewMarkdowns = [
     frontmatter: {
       title:
         'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
+      description: 'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
       path,
       date: 'December 2018',
       headerImage: null
@@ -30,6 +31,7 @@ const previewMarkdowns = [
     excerpt,
     frontmatter: {
       title: 'Building Additional Pylons',
+      description: 'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
       path,
       date: 'December 2018',
       headerImage: null

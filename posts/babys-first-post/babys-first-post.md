@@ -2,6 +2,7 @@
 path: /posts/babys-first-post
 date: "2018-12-27"
 title: "My first blog post"
+description: "Totally my first post ever lol"
 ---
 
 # GitHub Markdown Kitchen Sink

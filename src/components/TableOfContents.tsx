@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { systemTextStyle } from 'fontStyles'
+import { contentTextStyle } from 'fontStyles'
 import styled from 'utils/styled-components'
 
 interface TableOfContentsProps {
@@ -7,21 +7,39 @@ interface TableOfContentsProps {
 }
 
 const Container = styled.nav`
+  border-radius: 4px;
+  background-color: rgb(250, 250, 250);
+  display: inline-block;
+
+  display: inline-flex;
+  padding: 1rem;
+  flex-direction: column;
+
   ul {
+    display: flex;
+    flex-direction: column;
     padding-inline-start: 1rem;
   }
 
+  & > ul {
+    padding-inline-start: 0;
+  }
+
   li {
-    list-style: none;
+    display: flex;
+    flex-direction: column;
     p {
+      display: inline;
       margin: 0;
     }
   }
 
   a {
-    ${systemTextStyle}
+    ${contentTextStyle}
+    text-decoration: none;
     text-transform: none;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.5rem;
     &:hover {
       color: black;
     }

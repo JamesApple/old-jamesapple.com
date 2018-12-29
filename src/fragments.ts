@@ -9,6 +9,7 @@ export const displayMarkdownFragment = graphql`
       date(formatString: "MMMM YYYY")
       path
       title
+      description
 
       headerImage {
         childImageSharp {
@@ -29,6 +30,7 @@ export const previewMarkdownFragment = graphql`
       date(formatString: "MMMM YYYY")
       path
       title
+      description
 
       headerImage {
         childImageSharp {

@@ -46,6 +46,7 @@ const displayMarkdown = DisplayMarkdown.fromFragment({
     Elements</a></li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>`,
   frontmatter: {
     title: 'Redefining JavaScript Dynamically at Runtime',
+    description: 'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
     date: 'December 2019',
     headerImage: null,
     path: '/posts/this-one'

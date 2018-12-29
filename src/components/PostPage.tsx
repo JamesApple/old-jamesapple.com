@@ -21,6 +21,8 @@ const Title = styled.h1`
 
 const Date = styled.time`
   ${systemTextStyle}
+  display: block;
+  margin-bottom: 2rem;
 `
 
 const Well = styled.article`
@@ -30,11 +32,12 @@ const Well = styled.article`
 
 const PostBody = styled.div`
   ${contentTextStyle}
+  margin-bottom: 2rem;
 `
 
 export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
   public render() {
-    const { tableOfContents, headerImage, html, title, date } = this.props.displayMarkdown
+    const { description, tableOfContents, headerImage, html, title, date } = this.props.displayMarkdown
 
     return (
       <BaseLayout>
@@ -46,6 +49,9 @@ export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
         <Well>
           <Title>{title}</Title>
           <Date>{date}</Date>
+          <PostBody>
+            {description}
+          </PostBody>
           <TableOfContents tableOfContents={tableOfContents} />
 
           <PostBody dangerouslySetInnerHTML={{ __html: html }} />

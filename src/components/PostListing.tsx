@@ -4,7 +4,7 @@ import styled from 'utils/styled-components'
 import {
   systemTextStyle,
   postTitleTextStyle,
-  postSummaryTextStyle,
+  postDescriptionTextStyle,
   contentTextStyle
 } from 'fontStyles'
 
@@ -28,8 +28,8 @@ const Title = styled(Link)`
   }
 `
 
-const Summary = styled.p`
-  ${postSummaryTextStyle}
+const Description = styled.p`
+  ${postDescriptionTextStyle}
 `
 
 const Excerpt = styled.p`
@@ -50,9 +50,8 @@ const Container = styled.div`
 
 export default class PostListing extends React.PureComponent<IPostListingProps, {}> {
   public render() {
-    const { headerImage, excerpt, title, date, path } = this.props.previewMarkdown
+    const { description, headerImage, excerpt, title, date, path } = this.props.previewMarkdown
 
-    const summary = 'A short gander through the woods allows a great many adventures'
 
     return (
       <Container>
@@ -60,7 +59,7 @@ export default class PostListing extends React.PureComponent<IPostListingProps, 
         <br />
         <Title to={path}>{title}</Title>
         {!!headerImage && <HeaderImage fluid={headerImage} />}
-        <Summary>{summary}</Summary>
+        <Description>{description}</Description>
         <Excerpt>{excerpt}</Excerpt>
       </Container>
     )

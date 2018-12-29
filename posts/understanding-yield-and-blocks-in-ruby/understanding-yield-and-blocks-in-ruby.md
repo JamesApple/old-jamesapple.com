@@ -2,6 +2,7 @@
 path: /posts/understanding-yield-and-blocks-in-ruby
 date: 2018-05-20
 title: Understanding yield and blocks in Ruby
+description: "It's super easy AND fun!"
 headerImage: './myimg.png'
 ---
 Just want the syntax and some use cases? -> Link to code samples

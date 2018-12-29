@@ -28,7 +28,7 @@ font-size: 1.25rem;
 font-weight: 400;
 `
 
-export const postSummaryTextStyle = ({ theme }: { theme: ITheme }) => `
+export const postDescriptionTextStyle = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};
 font-style: italic;
 font-size: 1rem;
