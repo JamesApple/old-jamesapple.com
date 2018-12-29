@@ -1,15 +1,15 @@
 import { graphql } from 'gatsby'
 
-export interface IPreviewMarkdown {
+export interface IDisplayMarkdown {
   date: string
   path: string
   title: string
-  excerpt: string
+  html: string
   headerImage: FluidImage | null
 }
 
-export interface IPreviewMarkdownFragment {
-  excerpt: string
+export interface IDisplayMarkdownFragment {
+  html: string
 
   frontmatter: {
     date: string
@@ -24,9 +24,9 @@ export interface IPreviewMarkdownFragment {
   }
 }
 
-export const previewMarkdownFragment = graphql`
-  fragment PreviewMarkdown on MarkdownRemark {
-    excerpt(format: PLAIN, pruneLength: 200)
+export const displayMarkdownFragment = graphql`
+  fragment DisplayMarkdown on MarkdownRemark {
+    html
 
     frontmatter {
       date(formatString: "MMMM YYYY")
@@ -35,7 +35,7 @@ export const previewMarkdownFragment = graphql`
 
       headerImage {
         childImageSharp {
-          fluid(maxWidth: 500, maxHeight: 500) {
+          fluid(maxWidth: 1200, maxHeight: 800) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
@@ -44,7 +44,7 @@ export const previewMarkdownFragment = graphql`
   }
 `
 
-export default class PreviewMarkdown implements IPreviewMarkdown {
+export default class DisplayMarkdown implements IDisplayMarkdown {
   private get imageData(): FluidImage | null {
     const { headerImage } = this.rawFragment.frontmatter
     if (!headerImage) return null
@@ -71,30 +71,30 @@ export default class PreviewMarkdown implements IPreviewMarkdown {
     return this.rawFragment.frontmatter.path
   }
 
-  public get excerpt(): string {
-    return this.rawFragment.excerpt
+  public get html(): string {
+    return this.rawFragment.html
   }
 
-  public get value(): IPreviewMarkdown {
-    const { headerImage, date, path, title, excerpt } = this
+  public get value(): IDisplayMarkdown {
+    const { headerImage, date, path, title, html } = this
 
     return {
       date,
       path,
       title,
-      excerpt,
+      html,
       headerImage
     }
   }
 
-  public static fromFragment(rawFragment: IPreviewMarkdownFragment) {
-    return new PreviewMarkdown(rawFragment)
+  public static fromFragment(rawFragment: IDisplayMarkdownFragment) {
+    return new DisplayMarkdown(rawFragment)
   }
 
   private _headerImage: FluidImage | null | undefined
-  private rawFragment: IPreviewMarkdownFragment
+  private rawFragment: IDisplayMarkdownFragment
 
-  private constructor(rawFragment: IPreviewMarkdownFragment) {
+  private constructor(rawFragment: IDisplayMarkdownFragment) {
     this.rawFragment = rawFragment
   }
 }

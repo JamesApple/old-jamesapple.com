@@ -3,12 +3,10 @@ import Image from 'gatsby-image'
 
 import BaseLayout from 'components/BaseLayout'
 import styled from 'utils/styled-components';
+import DisplayMarkdown from 'models/DisplayMarkdown';
 
 interface IPostPageProps {
-  html: string
-  title: string
-  date: string
-  headerImage: FluidImage | null
+  displayMarkdown: DisplayMarkdown
 }
 
 const HeaderImage = styled(Image)`
@@ -17,7 +15,7 @@ const HeaderImage = styled(Image)`
 
 export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
   public render() {
-    const { headerImage, html, title, date } = this.props
+    const { headerImage, html, title, date } = this.props.displayMarkdown
 
     return (
       <BaseLayout>

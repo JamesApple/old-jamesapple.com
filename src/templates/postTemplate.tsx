@@ -2,43 +2,31 @@ import * as React from 'react'
 
 import { graphql } from 'gatsby'
 import PostPage from 'components/PostPage'
+import DisplayMarkdown, { IDisplayMarkdownFragment } from 'models/DisplayMarkdown';
 
 interface IPostTemplateProps {
   data: {
-    markdownRemark: {
-      html: string
-      frontmatter: Frontmatter
-    }
+    markdownRemark: IDisplayMarkdownFragment
   }
 }
 
 export const postTemplateQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
+      ...DisplayMarkdown
     }
   }
 `
 
 export default class PostTemplate extends React.PureComponent<IPostTemplateProps, {}> {
-  private get fluidImage(): null | FluidImage {
-    const { headerImage } = this.props.data.markdownRemark.frontmatter
-    if (!headerImage) return null
-    return headerImage.childImageSharp.fluid
-  }
 
   public render() {
-    const { frontmatter, html } = this.props.data.markdownRemark
+    const { markdownRemark } = this.props.data
 
     return (
-      <>
-        <PostPage
-          headerImage={this.fluidImage}
-          title={frontmatter.title}
-          date={frontmatter.date}
-          html={html}
+      <PostPage
+        displayMarkdown={DisplayMarkdown.fromFragment(markdownRemark)}
         />
-      </>
     )
   }
 }

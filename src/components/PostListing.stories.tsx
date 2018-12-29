@@ -3,6 +3,7 @@ import * as React from 'react'
 import UnthemedPostListing from 'components/PostListing'
 import { storiesOf } from '@storybook/react'
 import withThemeProvider from 'utils/withThemeProvider'
+import PreviewMarkdown from 'models/PreviewMarkdown'
 
 const excerpt = `Processing huge amounts of data on the web is always a
 back-end job—except when it’s not. Sometimes processing data in the browser via
@@ -14,27 +15,18 @@ them? Brian Greig tells all.`
 
 const PostListing = withThemeProvider(UnthemedPostListing)
 
-storiesOf('PostListing', module)
-  .add('Default', () => {
-    return (
-      <PostListing
-        excerpt={excerpt}
-        title={'Taming data with JavaScript'}
-        date={'December 2018'}
-        path={'/post-path'}
-      />
-    )
-  })
-
-  .add('Long Title', () => {
-    return (
-      <PostListing
-        excerpt={excerpt}
-        title={
-          'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute'
+storiesOf('PostListing', module).add('Default', () => {
+  return (
+    <PostListing
+      previewMarkdown={PreviewMarkdown.fromFragment({
+        excerpt,
+        frontmatter: {
+          title: 'Dismantle the System of Opression',
+          path: '/posts/opression',
+          date: 'December 2018',
+          headerImage: null
         }
-        date={'December 2018'}
-        path={'/post-path'}
-      />
-    )
-  })
+      })}
+    />
+  )
+})

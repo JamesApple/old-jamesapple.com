@@ -3,6 +3,7 @@ import * as React from 'react'
 import UnthemedPostList from 'components/PostList'
 import { storiesOf } from '@storybook/react'
 import withThemeProvider from 'utils/withThemeProvider'
+import PreviewMarkdown from 'models/PreviewMarkdown'
 
 const excerpt = `Processing huge amounts of data on the web is always a
 back-end job—except when it’s not. Sometimes processing data in the browser via
@@ -14,30 +15,30 @@ them? Brian Greig tells all.`
 
 const path = '/post-path'
 
-const postDetails = [
-  {
-    title:
-      'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
+const previewMarkdowns = [
+  PreviewMarkdown.fromFragment({
     excerpt,
-    path,
-    date: 'December 2018'
-  },
-  {
-    title: 'Building Additional Pylons',
+    frontmatter: {
+      title:
+        'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
+      path,
+      date: 'December 2018',
+      headerImage: null
+    }
+  }),
+  PreviewMarkdown.fromFragment({
     excerpt,
-    path,
-    date: 'December 2018'
-  }
+    frontmatter: {
+      title: 'Building Additional Pylons',
+      path,
+      date: 'December 2018',
+      headerImage: null
+    }
+  })
 ]
 
 const PostList = withThemeProvider(UnthemedPostList)
 
-storiesOf('PostList', module)
-  .add('Default', () => {
-    return (
-      <PostList
-        postDetails={postDetails}
-      />
-    )
-  })
-
+storiesOf('PostList', module).add('Default', () => {
+  return <PostList previewMarkdowns={previewMarkdowns} />
+})
