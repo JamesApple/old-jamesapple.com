@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import IndexPage from 'components/IndexPage'
 import PreviewMarkdown, { IPreviewMarkdownFragment } from 'models/PreviewMarkdown'
+import PostListPage from 'components/PostListPage'
 
 interface IIndexPageContainerProps {
   pageContext: {
@@ -40,8 +40,14 @@ export default class PostListTemplate extends React.PureComponent<IIndexPageCont
   }
 
   public render() {
-    // const { limit, skip, pageCount, currentPage } = this.props.pageContext
+    const { pageCount, currentPage } = this.props.pageContext
 
-    return <IndexPage previewMarkdowns={this.previewMarkdowns} />
+    return (
+      <PostListPage
+        previewMarkdowns={this.previewMarkdowns}
+        pageCount={pageCount}
+        currentPage={currentPage}
+      />
+    )
   }
 }
