@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     name: 'James Apple',
+    title: 'James Apple',
+    description: 'Software Engineering Blog of James Apple.',
     siteUrl: `https://www.jamesapple.com`
   },
   plugins: [
@@ -73,9 +75,6 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-feed`
-    },
-    {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         // Setting a color is optional.
@@ -99,6 +98,63 @@ module.exports = {
       options: {
         logo: './src/images/icon.png'
       }
-    }
+    },
+
+
+  {
+    resolve: `gatsby-plugin-feed`,
+    options: {
+      query: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+              site_url: siteUrl
+            }
+          }
+        }
+      `,
+      feeds: [
+        {
+          serialize: ({ query: { site, allMarkdownRemark } }) => {
+            return allMarkdownRemark.edges.map(edge => {
+              return Object.assign({}, edge.node.frontmatter, {
+                description: edge.node.frontmatter.description,
+                date: edge.node.frontmatter.date,
+                url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                custom_elements: [{ "content:encoded": edge.node.html }],
+              })
+            })
+          },
+          query: `
+            {
+              allMarkdownRemark(
+                limit: 1000,
+                sort: { order: DESC, fields: [frontmatter___date] },
+                filter: {frontmatter: { draft: { ne: true } }}
+              ) {
+                edges {
+                  node {
+                    html
+                    frontmatter {
+                      description
+                      path
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            }
+          `,
+          output: "/rss.xml",
+          title: "JamesApple.com RSS Feed",
+        },
+      ],
+    },
+  },
   ]
 }
