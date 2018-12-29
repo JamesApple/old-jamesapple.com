@@ -10,6 +10,7 @@ export const displayMarkdownFragment = graphql`
       path
       title
       description
+      tags
 
       headerImage {
         publicURL
@@ -32,6 +33,7 @@ export const previewMarkdownFragment = graphql`
       path
       title
       description
+      tags
 
       headerImage {
         childImageSharp {

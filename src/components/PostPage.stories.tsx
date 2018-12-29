@@ -49,6 +49,7 @@ const displayMarkdown = DisplayMarkdown.fromFragment({
     description: 'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
     date: 'December 2019',
     headerImage: null,
+    tags: ['javascript'],
     path: '/posts/this-one'
   }
 })

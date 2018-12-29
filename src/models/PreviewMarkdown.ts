@@ -3,6 +3,7 @@ interface IPreviewMarkdown {
   path: string
   title: string
   excerpt: string
+  tags: string[]
   description: string
   headerImage: FluidImage | null
 }
@@ -15,6 +16,7 @@ export interface IPreviewMarkdownFragment {
     path: string
     title: string
     description: string
+    tags: string[]
 
     headerImage: {
       childImageSharp: {
@@ -43,6 +45,10 @@ export default class PreviewMarkdown implements IPreviewMarkdown {
     return this.rawFragment.frontmatter.date
   }
 
+  public get tags(): string[] {
+    return this.rawFragment.frontmatter.tags
+  }
+
   public get description(): string {
     return this.rawFragment.frontmatter.description
   }
@@ -60,10 +66,11 @@ export default class PreviewMarkdown implements IPreviewMarkdown {
   }
 
   public get value(): IPreviewMarkdown {
-    const { description, headerImage, date, path, title, excerpt } = this
+    const { tags, description, headerImage, date, path, title, excerpt } = this
 
     return {
       description,
+      tags,
       date,
       path,
       title,

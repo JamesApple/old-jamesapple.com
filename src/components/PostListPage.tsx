@@ -9,16 +9,17 @@ interface PostListPageProps {
   previewMarkdowns: PreviewMarkdown[]
   pageCount: number
   currentPage: number
+  pathPrefix?: string
 }
 
 export default class PostListPage extends React.PureComponent<PostListPageProps, {}> {
   public render() {
-    const { pageCount, currentPage, previewMarkdowns } = this.props
+    const { pageCount, currentPage, previewMarkdowns, pathPrefix = '/posts/' } = this.props
 
     return (
       <BaseLayout>
         <PostList previewMarkdowns={previewMarkdowns} />
-        <Pagination pathPrefix={'/posts/'} pageCount={pageCount} currentPage={currentPage} />
+        <Pagination pathPrefix={pathPrefix} pageCount={pageCount} currentPage={currentPage} />
       </BaseLayout>
     )
   }

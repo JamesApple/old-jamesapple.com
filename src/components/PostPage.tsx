@@ -7,6 +7,7 @@ import DisplayMarkdown from 'models/DisplayMarkdown'
 import ContentWidth from './ContentWidth'
 import { postTitleTextStyle, systemTextStyle, contentTextStyle } from 'fontStyles'
 import TableOfContents from './TableOfContents'
+import { Link } from 'gatsby'
 
 interface IPostPageProps {
   displayMarkdown: DisplayMarkdown
@@ -43,10 +44,20 @@ const Description = styled.p`
   margin-bottom: 2rem;
 `
 
+const Tag = styled(Link)`
+  ${systemTextStyle}
+  padding: 0.5rem;
+  padding-left: 0;
+  &:hover {
+    color: black;
+  }
+`
+
 export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
   public render() {
     const {
       description,
+      tags,
       tableOfContents,
       headerImage,
       html,
@@ -63,13 +74,18 @@ export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
         )}
         <ContentWidth>
           <Well>
+            {tags.map(tag => (
+              <Tag key={tag} to={`/tags/${tag}`}>
+                {tag}
+              </Tag>
+            ))}
             <Title>{title}</Title>
             <Date>{date}</Date>
             <TableOfContents tableOfContents={tableOfContents} />
             <Description>{description}</Description>
             <PostBody dangerouslySetInnerHTML={{ __html: html }} />
           </Well>
-          </ContentWidth>
+        </ContentWidth>
       </BaseLayout>
     )
   }

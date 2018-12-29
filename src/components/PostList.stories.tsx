@@ -19,6 +19,7 @@ const previewMarkdowns = [
   PreviewMarkdown.fromFragment({
     excerpt,
     frontmatter: {
+      tags: ['javascript', 'ruby'],
       title:
         'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
       description: 'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
@@ -30,6 +31,7 @@ const previewMarkdowns = [
   PreviewMarkdown.fromFragment({
     excerpt,
     frontmatter: {
+      tags: ['ruby'],
       title: 'Building Additional Pylons',
       description: 'Dismantling the Patriarchy with Zach and Stephanie Glouchester of the Hampshire Institute',
       path,

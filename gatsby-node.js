@@ -2,6 +2,7 @@ const path = require('path')
 
 const { NODE_ENV } = process.env
 const isProd = NODE_ENV !== 'development'
+const postsPerPage = 6
 
 const createPostPages = (res, createPage) => {
   const postTemplate = path.resolve(`src/templates/postTemplate.tsx`)
@@ -18,7 +19,6 @@ const createPostPages = (res, createPage) => {
 
 const createPaginatedPostListingPages = (res, createPage) => {
   const postListTemplate = path.resolve(`src/templates/postListTemplate.tsx`)
-  const postsPerPage = 6
   const posts = res.data.allMarkdownRemark.edges
   const livePosts = isProd ? posts.filter(({ node }) => node.frontmatter.draft) : posts
   const numPages = Math.ceil(livePosts.length / postsPerPage)
@@ -37,6 +37,45 @@ const createPaginatedPostListingPages = (res, createPage) => {
   })
 }
 
+const createPaginatedTagListingPage = (tag, taggedPosts, createPage) => {
+  const numPages = Math.ceil(taggedPosts.length / postsPerPage)
+  const postListTemplate = path.resolve(`src/templates/postListTagTemplate.tsx`)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/tags/${tag}` : `/tags/${tag}/${i + 1}`,
+      component: postListTemplate,
+      context: {
+        tag: tag,
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        pageCount: numPages,
+        currentPage: i + 1
+      }
+    })
+  })
+}
+
+const createTagListingPages = (res, createPage) => {
+  const posts = res.data.allMarkdownRemark.edges
+  const livePosts = isProd ? posts.filter(({ node }) => node.frontmatter.draft) : posts
+
+  let tags = {}
+  posts.forEach(post => {
+    const newTags = post.node.frontmatter.tags
+    if (newTags) {
+      newTags.forEach(tag => (tags[tag] = tag))
+    }
+  })
+
+  console.log(tags)
+
+  Object.values(tags).forEach(tag => {
+    taggedPosts = livePosts.filter(post => post.node.frontmatter.tags.includes(tag))
+    createPaginatedTagListingPage(tag, taggedPosts, createPage)
+  })
+}
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
@@ -48,6 +87,7 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               path
               draft
+              tags
             }
           }
         }
@@ -64,6 +104,10 @@ exports.createPages = ({ actions, graphql }) => {
     })
     .then(res => {
       createPaginatedPostListingPages(res, createPage)
+      return res
+    })
+    .then(res => {
+      createTagListingPages(res, createPage)
       return res
     })
 }
