@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 export const displayMarkdownFragment = graphql`
   fragment DisplayMarkdown on MarkdownRemark {
     html
+    tableOfContents(pathToSlugField: "frontmatter.path")
 
     frontmatter {
       date(formatString: "MMMM YYYY")

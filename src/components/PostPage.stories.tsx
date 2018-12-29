@@ -32,6 +32,18 @@ const displayMarkdown = DisplayMarkdown.fromFragment({
     <pre>
     console.log('Hello')
     </pre>`,
+    tableOfContents: `<ul>\n<li>\n<p><a
+    href=\"/My%20first%20blog%20post/#github-markdown-kitchen-sink\">GitHub
+    Markdown Kitchen Sink</a></p>\n<ul>\n<li>\n<ul>\n<li>\n<ul>\n<li>\n<p><a
+    href=\"/My%20first%20blog%20post/#resources\">Resources</a></p>\n<ul>\n<li><a
+    href=\"/My%20first%20blog%20post/#this-repo\">This Repo</a></li>\n<li><a
+    href=\"/My%20first%20blog%20post/#markdown\">Markdown</a></li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n<li>\n<p><a
+    href=\"/My%20first%20blog%20post/#code-examples-with-preview\">Code
+    Examples with Preview</a></p>\n<ul>\n<li><a
+    href=\"/My%20first%20blog%20post/#block-elements\">Block
+    Elements</a></li>\n<li><a
+    href=\"/My%20first%20blog%20post/#inline-elements\">Inline
+    Elements</a></li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>`,
   frontmatter: {
     title: 'Redefining JavaScript Dynamically at Runtime',
     date: 'December 2019',

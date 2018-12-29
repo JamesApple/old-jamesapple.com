@@ -4,11 +4,6 @@ date: 2018-05-20
 title: Understanding yield and blocks in Ruby
 headerImage: './myimg.png'
 ---
-
-![Base](myimg.png)
-![Relative](./myimg.png)
-![Root](/myimg.png)
-
 Just want the syntax and some use cases? -> Link to code samples
 Learning ruby from scratch? Ensure you understand the following concepts
 

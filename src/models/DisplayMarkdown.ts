@@ -4,11 +4,13 @@ interface IDisplayMarkdown {
   path: string
   title: string
   html: string
+  tableOfContents: string
   headerImage: FluidImage | null
 }
 
 export interface IDisplayMarkdownFragment {
   html: string
+  tableOfContents: string
 
   frontmatter: {
     date: string
@@ -39,6 +41,10 @@ export default class DisplayMarkdown implements IDisplayMarkdown {
     return this._headerImage
   }
 
+  public get tableOfContents(): string {
+    return this.rawFragment.tableOfContents
+  }
+
   public get date(): string {
     return this.rawFragment.frontmatter.date
   }
@@ -56,14 +62,15 @@ export default class DisplayMarkdown implements IDisplayMarkdown {
   }
 
   public get value(): IDisplayMarkdown {
-    const { headerImage, date, path, title, html } = this
+    const { tableOfContents, headerImage, date, path, title, html } = this
 
     return {
       date,
       path,
       title,
       html,
-      headerImage
+      headerImage,
+      tableOfContents
     }
   }
 
