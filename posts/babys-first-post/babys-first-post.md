@@ -9,6 +9,17 @@ description: "Totally my first post ever lol"
 
 A large collection of code samples which have been tested against GitHub's markdown parser... so you don't have to.
 
+```javascript{2}
+if(a === undefined){
+  console.log('hello')
+}
+```
+```ruby{numberLines: true}
+def hi
+  p 'Hello'
+end
+```
+
 #### Resources
 
 ##### This Repo

@@ -6,7 +6,7 @@ import styled from 'utils/styled-components'
 import DisplayMarkdown from 'models/DisplayMarkdown'
 import ContentWidth from './ContentWidth'
 import { postTitleTextStyle, systemTextStyle, contentTextStyle } from 'fontStyles'
-import TableOfContents from './TableOfContents';
+import TableOfContents from './TableOfContents'
 
 interface IPostPageProps {
   displayMarkdown: DisplayMarkdown
@@ -37,7 +37,14 @@ const PostBody = styled.div`
 
 export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
   public render() {
-    const { description, tableOfContents, headerImage, html, title, date } = this.props.displayMarkdown
+    const {
+      description,
+      tableOfContents,
+      headerImage,
+      html,
+      title,
+      date
+    } = this.props.displayMarkdown
 
     return (
       <BaseLayout>
@@ -46,16 +53,15 @@ export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
             <HeaderImage fluid={headerImage} />
           </ContentWidth>
         )}
-        <Well>
-          <Title>{title}</Title>
-          <Date>{date}</Date>
-          <PostBody>
-            {description}
-          </PostBody>
-          <TableOfContents tableOfContents={tableOfContents} />
-
-          <PostBody dangerouslySetInnerHTML={{ __html: html }} />
-        </Well>
+        <ContentWidth>
+          <Well>
+            <Title>{title}</Title>
+            <Date>{date}</Date>
+            <PostBody>{description}</PostBody>
+            <TableOfContents tableOfContents={tableOfContents} />
+            <PostBody dangerouslySetInnerHTML={{ __html: html }} />
+          </Well>
+          </ContentWidth>
       </BaseLayout>
     )
   }

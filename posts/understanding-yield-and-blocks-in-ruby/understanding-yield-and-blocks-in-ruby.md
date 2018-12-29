@@ -8,14 +8,15 @@ headerImage: './myimg.png'
 Just want the syntax and some use cases? -> Link to code samples
 Learning ruby from scratch? Ensure you understand the following concepts
 
+`bash>> ls -la`
+
 - Local scope
 - Methods/Functions
 - Implicit Returns (everything in ruby is evaluated)
 - Data Types
 
 ## Why do I need yields and &blocks
-
-Many basic use cases for `yield`s can be accomplished using wrapper methods over existing functionality. `yield`’s true strength is the removal of boilerplate and simplification of your code base.
+`css>>.some-class { background-color: red }`
 
 ### Practical yield examples
 
@@ -43,7 +44,7 @@ _Output always follows `>`_
 
 ### Brace style oneliner blocks
 
-```rb
+```ruby
 my_array = [1, 2, 3,]
 my_array.each { |x| puts x + 1 }
 
@@ -54,7 +55,7 @@ my_array.each { |x| puts x + 1 }
 
 ### do … end style multiline blocks
 
-```rb
+```ruby
 my_array = [1, 2, 3]
 my_array.each do |x|
 	y = x + 1
@@ -74,7 +75,7 @@ Both blocks output the same data, regardless of style. These are functionally id
 
 When `yield` is called within a method, it pauses execution of the current thread until the block is completed.
 
-```rb
+```ruby
 def method
     puts "First"
     yield
@@ -94,7 +95,7 @@ method { puts "Second"; puts `sleep 3`  }
 
 Everything in Ruby evaluates to a value and `yield` is no different. I understood yield first as being a way to call ‘baby methods’ within ‘parent methods’. You may recognise that this is the same plumbing that allows `Enumerable` methods like `Enumerable#map` and `Enumerable#reduce` to function.
 
-```rb
+```ruby
 def array_method(an_array)
 	puts "Starting up!"
 	for each_item in an_array
@@ -131,7 +132,7 @@ array_method(my_array) { |thing| puts thing * 2 }
 Now that we know yield passes arguments, it follows that we can also return a value from a block. Here we’ve rewritten the map function to demonstrate the simplicity and power `yield` provides.
 You can return values from the block using the `return` keyword or implicitly returning the last evaluation in the block.
 
-```rb
+```ruby
 def mapper(an_array)
     new_array = []
     for each_item in an_array
@@ -176,7 +177,7 @@ The same method can alternatively be used with a block to find the index of a ch
 
 Here we’ll define `reducer`, a method that will sum an array passed to it as an argument, or alternatively allow you to perform an operation with an initial value on each item in the array
 
-```rb
+```ruby
 def reducer(an_array, initial_value=0)
 	sum = initial_value
 	for each_item in an_array
@@ -234,7 +235,7 @@ Now that you have a strong grasp on how yield works, I’ll stop boring you with
 
 If you’re unsure how many arguments may be called, you can set defaults on a blocks arguments to prevent an exception.
 
-```rb
+```ruby
 def two_args
     yield "First", "Second"
     yield "Third"
@@ -249,7 +250,7 @@ two_args { |a, b = "Nothing Passed"| puts "#{a} then #{b}" }
 
 Many loops in ruby are in fact blocks being repeatedly invoked by a method.
 
-```rb
+```ruby
 3.times { print '!'}
 # > !!!
 5.upto(10) { |i| print i }
@@ -260,7 +261,7 @@ Many loops in ruby are in fact blocks being repeatedly invoked by a method.
 
 That doesn’t however mean that they do anything useful with them.
 
-```rb
+```ruby
 def my_method
 	puts "From method"
 end
