@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
-    name: 'James Apple'
+    name: 'James Apple',
+    siteUrl: `https://www.jamesapple.com`
   },
   plugins: [
+    `gatsby-plugin-offline`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     {
@@ -14,6 +16,21 @@ module.exports = {
     },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
+    'gatsby-plugin-catch-links',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'James Apple',
+        short_name: 'James Apple',
+        description: 'Software Engineering Blog of James Apple',
+        start_url: '/',
+        background_color: 'white',
+        theme_color: 'black',
+        display: 'standalone',
+        icon: 'src/images/icon.png'
+      }
+    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
@@ -43,12 +60,45 @@ module.exports = {
               showLineNumbers: false,
               noInlineHighlight: false
             }
+          },
+
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow noopener noreferrer'
+            }
           }
         ]
       }
     },
     {
       resolve: `gatsby-plugin-feed`
+    },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `teal`,
+        // Disable the loading spinner.
+        showSpinner: false
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.jamesapple.com',
+        sitemap: 'https://www.jamesapple.com/sitemap.xml',
+        policy: [{ userAgent: '*', disallow: '/' }]
+      }
+    },
+    `gatsby-plugin-sitemap`,
+
+    {
+      resolve: `gatsby-plugin-favicon`,
+      options: {
+        logo: './src/images/icon.png'
+      }
     }
   ]
 }
