@@ -9,8 +9,15 @@ interface TableOfContentsProps {
 const Container = styled.nav`
   border-radius: 4px;
   background-color: rgb(250, 250, 250);
-  display: inline-block;
+  max-width: 50%;
 
+  @media screen and (max-width: 50rem) {
+    display: block;
+    float: none;
+    max-width: 100%;
+  }
+
+  float:right;
   display: inline-flex;
   padding: 1rem;
   flex-direction: column;

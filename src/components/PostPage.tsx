@@ -12,7 +12,10 @@ interface IPostPageProps {
   displayMarkdown: DisplayMarkdown
 }
 
-const HeaderImage = styled(Image)``
+const HeaderImage = styled(Image)`
+  max-width: 100%;
+  max-height: 30rem;
+`
 
 const Title = styled.h1`
   ${postTitleTextStyle}
@@ -31,6 +34,11 @@ const Well = styled.article`
 `
 
 const PostBody = styled.div`
+  ${contentTextStyle}
+  margin-bottom: 2rem;
+`
+
+const Description = styled.p`
   ${contentTextStyle}
   margin-bottom: 2rem;
 `
@@ -57,8 +65,8 @@ export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
           <Well>
             <Title>{title}</Title>
             <Date>{date}</Date>
-            <PostBody>{description}</PostBody>
             <TableOfContents tableOfContents={tableOfContents} />
+            <Description>{description}</Description>
             <PostBody dangerouslySetInnerHTML={{ __html: html }} />
           </Well>
           </ContentWidth>
