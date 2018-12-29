@@ -1,5 +1,3 @@
-import { graphql } from 'gatsby'
-
 interface IPreviewMarkdown {
   date: string
   path: string
@@ -23,26 +21,6 @@ export interface IPreviewMarkdownFragment {
     } | null
   }
 }
-
-export const previewMarkdownFragment = graphql`
-  fragment PreviewMarkdown on MarkdownRemark {
-    excerpt(format: PLAIN, pruneLength: 200)
-
-    frontmatter {
-      date(formatString: "MMMM YYYY")
-      path
-      title
-
-      headerImage {
-        childImageSharp {
-          fluid(maxWidth: 500, maxHeight: 500) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  }
-`
 
 export default class PreviewMarkdown implements IPreviewMarkdown {
   private get imageData(): FluidImage | null {

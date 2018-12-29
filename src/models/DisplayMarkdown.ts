@@ -1,4 +1,3 @@
-import { graphql } from 'gatsby'
 
 interface IDisplayMarkdown {
   date: string
@@ -24,25 +23,6 @@ export interface IDisplayMarkdownFragment {
   }
 }
 
-export const displayMarkdownFragment = graphql`
-  fragment DisplayMarkdown on MarkdownRemark {
-    html
-
-    frontmatter {
-      date(formatString: "MMMM YYYY")
-      path
-      title
-
-      headerImage {
-        childImageSharp {
-          fluid(maxWidth: 1200, maxHeight: 800) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  }
-`
 
 export default class DisplayMarkdown implements IDisplayMarkdown {
   private get imageData(): FluidImage | null {
