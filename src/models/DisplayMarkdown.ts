@@ -1,4 +1,3 @@
-
 interface IDisplayMarkdown {
   date: string
   path: string
@@ -7,6 +6,7 @@ interface IDisplayMarkdown {
   description: string
   tableOfContents: string
   headerImage: FluidImage | null
+  publicHeaderImageUrl: string | undefined
 }
 
 export interface IDisplayMarkdownFragment {
@@ -20,6 +20,7 @@ export interface IDisplayMarkdownFragment {
     description: string
 
     headerImage: {
+      publicURL: string
       childImageSharp: {
         fluid: FluidImage
       }
@@ -27,20 +28,30 @@ export interface IDisplayMarkdownFragment {
   }
 }
 
-
 export default class DisplayMarkdown implements IDisplayMarkdown {
-  private get imageData(): FluidImage | null {
+  private get imageData(): { headerImage: FluidImage | null; publicHeaderImageUrl?: string } {
     const { headerImage } = this.rawFragment.frontmatter
-    if (!headerImage) return null
-    return headerImage.childImageSharp.fluid
+    if (!headerImage) return { headerImage: null, publicHeaderImageUrl: undefined }
+    return {
+      headerImage: headerImage.childImageSharp.fluid,
+      publicHeaderImageUrl: headerImage.publicURL
+    }
   }
 
+  // Emergency refactor when less sleep deprived
   public get headerImage(): FluidImage | null {
     if (this._headerImage === undefined) {
-      this._headerImage = this.imageData
+      const { headerImage, publicHeaderImageUrl } = this.imageData
+      this._headerImage = headerImage
+      this._publicHeaderImageUrl = publicHeaderImageUrl
       return this._headerImage
     }
     return this._headerImage
+  }
+
+  public get publicHeaderImageUrl(): string | undefined {
+    ;(() => this.headerImage)()
+    return this._publicHeaderImageUrl
   }
 
   public get tableOfContents(): string {
@@ -68,9 +79,19 @@ export default class DisplayMarkdown implements IDisplayMarkdown {
   }
 
   public get value(): IDisplayMarkdown {
-    const { description, tableOfContents, headerImage, date, path, title, html } = this
+    const {
+      publicHeaderImageUrl,
+      description,
+      tableOfContents,
+      headerImage,
+      date,
+      path,
+      title,
+      html
+    } = this
 
     return {
+      publicHeaderImageUrl,
       description,
       date,
       path,
@@ -85,6 +106,7 @@ export default class DisplayMarkdown implements IDisplayMarkdown {
     return new DisplayMarkdown(rawFragment)
   }
 
+  private _publicHeaderImageUrl: string | undefined
   private _headerImage: FluidImage | null | undefined
   private rawFragment: IDisplayMarkdownFragment
 

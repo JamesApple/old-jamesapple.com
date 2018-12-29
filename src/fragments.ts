@@ -12,6 +12,7 @@ export const displayMarkdownFragment = graphql`
       description
 
       headerImage {
+        publicURL
         childImageSharp {
           fluid(maxWidth: 1200, maxHeight: 800) {
             ...GatsbyImageSharpFluid_withWebp

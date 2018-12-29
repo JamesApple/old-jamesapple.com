@@ -17,6 +17,7 @@ export default class SEO extends React.PureComponent<SEOProps, {}> {
     const { title, description, image, pathname, article = false } = this.props
     const url = `${siteUrl}${pathname || '/'}`
 
+
     return (
       <>
         <Helmet title={title} titleTemplate={'%s - James Apple'}>

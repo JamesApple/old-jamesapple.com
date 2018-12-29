@@ -33,6 +33,7 @@ export default class PostTemplate extends React.PureComponent<IPostTemplateProps
           description={displayMarkdown.description}
           pathname={displayMarkdown.path}
           article={true}
+          image={displayMarkdown.publicHeaderImageUrl}
         />
 
         <PostPage displayMarkdown={displayMarkdown} />
