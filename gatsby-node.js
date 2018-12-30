@@ -1,80 +1,8 @@
 const path = require('path')
-
 const { NODE_ENV } = process.env
-const isProd = NODE_ENV !== 'development'
-const postsPerPage = 6
+const IS_PROD = NODE_ENV !== 'development'
+const POSTS_PER_PAGE = 6
 
-const createPostPages = (res, createPage) => {
-  const postTemplate = path.resolve(`src/templates/postTemplate.tsx`)
-  res.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    // Hide drafts
-    if (isProd && node.frontmatter.draft) return
-    createPage({
-      path: node.frontmatter.path,
-      component: postTemplate,
-      context: {}
-    })
-  })
-}
-
-const createPaginatedPostListingPages = (res, createPage) => {
-  const postListTemplate = path.resolve(`src/templates/postListTemplate.tsx`)
-  const posts = res.data.allMarkdownRemark.edges
-  const livePosts = isProd ? posts.filter(({ node }) => node.frontmatter.draft) : posts
-  const numPages = Math.ceil(livePosts.length / postsPerPage)
-
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? '/posts' : `/posts/${i + 1}`,
-      component: postListTemplate,
-      context: {
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        pageCount: numPages,
-        currentPage: i + 1
-      }
-    })
-  })
-}
-
-const createPaginatedTagListingPage = (tag, taggedPosts, createPage) => {
-  const numPages = Math.ceil(taggedPosts.length / postsPerPage)
-  const postListTemplate = path.resolve(`src/templates/postListTagTemplate.tsx`)
-
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/tags/${tag}` : `/tags/${tag}/${i + 1}`,
-      component: postListTemplate,
-      context: {
-        tag: tag,
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        pageCount: numPages,
-        currentPage: i + 1
-      }
-    })
-  })
-}
-
-const createTagListingPages = (res, createPage) => {
-  const posts = res.data.allMarkdownRemark.edges
-  const livePosts = isProd ? posts.filter(({ node }) => node.frontmatter.draft) : posts
-
-  let tags = {}
-  posts.forEach(post => {
-    const newTags = post.node.frontmatter.tags
-    if (newTags) {
-      newTags.forEach(tag => (tags[tag] = tag))
-    }
-  })
-
-  console.log(tags)
-
-  Object.values(tags).forEach(tag => {
-    taggedPosts = livePosts.filter(post => post.node.frontmatter.tags.includes(tag))
-    createPaginatedTagListingPage(tag, taggedPosts, createPage)
-  })
-}
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
@@ -94,21 +22,12 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
   `)
-    .then(res => {
-      if (res.errors) return Promise.reject(res.errors)
-      return res
-    })
-    .then(res => {
-      createPostPages(res, createPage)
-      return res
-    })
-    .then(res => {
-      createPaginatedPostListingPages(res, createPage)
-      return res
-    })
-    .then(res => {
-      createTagListingPages(res, createPage)
-      return res
+    .then(query => (query.errors ? Promise.reject(query.errors) : query))
+    .then(query => query.data.allMarkdownRemark.edges.map(e => e.node))
+    .then(posts => {
+      createPostPages(posts, createPage)
+      createPaginatedPostListingPages(posts, createPage)
+      createTagListingPages(posts, createPage)
     })
 }
 
@@ -119,3 +38,72 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
     }
   })
 }
+
+const pageCount = posts => Math.ceil(posts.length / POSTS_PER_PAGE)
+const pagePath = (prefix, index) => (index === 0 ? prefix : `${prefix}/${index + 1}`)
+const isLive = post => (IS_PROD ? !post.frontmatter.draft : true)
+
+function createPostPages(posts, createPage) {
+  posts.forEach(post => {
+    if (isLive(post)) {
+      createPage({
+        path: post.frontmatter.path,
+        component: path.resolve(`src/templates/postTemplate.tsx`),
+        context: {}
+      })
+    }
+  })
+}
+
+function createPaginatedPostListingPages(posts, createPage) {
+  const livePosts = posts.filter(isLive)
+
+  Array.from({ length: pageCount(livePosts) }).forEach((_, pageNumber) => {
+    createPage({
+      path: pagePath('/posts', pageNumber),
+      component: path.resolve(`src/templates/postListTemplate.tsx`),
+      context: {
+        limit: POSTS_PER_PAGE,
+        skip: pageNumber * POSTS_PER_PAGE,
+        pageCount: pageCount(livePosts),
+        currentPage: pageNumber + 1
+      }
+    })
+  })
+}
+
+function createPaginatedTagListingPage(tag, taggedPosts, createPage) {
+  const numPages = pageCount(taggedPosts)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/tags/${tag}` : `/tags/${tag}/${i + 1}`,
+      component: path.resolve(`src/templates/postListTagTemplate.tsx`),
+      context: {
+        tag: tag,
+        limit: POSTS_PER_PAGE,
+        skip: i * POSTS_PER_PAGE,
+        pageCount: numPages,
+        currentPage: i + 1
+      }
+    })
+  })
+}
+
+function createTagListingPages(posts, createPage) {
+  const livePosts = posts.filter(isLive)
+
+  let tags = {}
+  livePosts.forEach(post => {
+    const newTags = post.frontmatter.tags
+    if (newTags) {
+      newTags.forEach(tag => (tags[tag] = tag))
+    }
+  })
+
+  Object.values(tags).forEach(tag => {
+    taggedPosts = livePosts.filter(post => post.frontmatter.tags.includes(tag))
+    createPaginatedTagListingPage(tag, taggedPosts, createPage)
+  })
+}
+
