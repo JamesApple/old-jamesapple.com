@@ -9,9 +9,7 @@ export interface IPostListProps {
   previewMarkdowns: PreviewMarkdown[]
 }
 
-const Container = styled.article`
-  padding-top: 4rem;
-`
+const Container = styled.main``
 
 export default class PostList extends React.PureComponent<IPostListProps, {}> {
   public render() {

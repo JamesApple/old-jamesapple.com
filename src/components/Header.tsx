@@ -27,7 +27,7 @@ const NavBarContainer = styled.nav`
   }
 `
 
-const navItemStyles = (props: any) => `
+export const navItemStyles = (props: any) => `
   ${systemTextStyle(props)}
   padding: 1rem;
   margin: 0 1rem;
@@ -40,9 +40,9 @@ const InternalLink = styled(Link)`
   ${navItemStyles}
 `
 
-const ExternalLink = styled.a`
-  ${navItemStyles}
-`
+// const ExternalLink = styled.a`
+//   ${navItemStyles}
+// `
 
 const Logo = styled(BaseLogo)`
   margin: 1.5rem 0;
@@ -57,7 +57,6 @@ export default class Header extends React.PureComponent<{}, {}> {
           <NavItems>
             <InternalLink to={'/'}>Home</InternalLink>
             <InternalLink to={'/posts'}>Posts</InternalLink>
-            <ExternalLink href="https://twitter.com/jamesappledev">Twitter</ExternalLink>
           </NavItems>
         </NavBarContainer>
       </ContentWidth>

@@ -7,14 +7,19 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 export default createGlobalStyle`
  ${normalize}
 
-html {
-  ${fluidType({ minSize: 14, maxSize: 24 })}
-}
+  html {
+    ${fluidType({ minSize: 14, maxSize: 24 })}
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
   p {
     max-width: 70ch;
   }
 
-  // Code highlighting
   .gatsby-highlight-code-line {
     background-color: #494949;
     display: block;
@@ -35,26 +40,24 @@ html {
   }
 
 
-/**
- * Remove the default PrismJS theme background-color, border-radius, margin,
- * padding and overflow.
- * 1. Make the element just wide enough to fit its content.
- * 2. Always fill the visible space in .gatsby-highlight.
- * 3. Adjust the position of the line numbers
- */
-.gatsby-highlight pre[class*="language-"] {
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  overflow: initial;
-  float: left; /* 1 */
-  min-width: 100%; /* 2 */
+  /**
+   * Remove the default PrismJS theme background-color, border-radius, margin,
+   * padding and overflow.
+   * 1. Make the element just wide enough to fit its content.
+   * 2. Always fill the visible space in .gatsby-highlight.
+   * 3. Adjust the position of the line numbers
+   */
+  .gatsby-highlight pre[class*="language-"] {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    overflow: initial;
+    float: left; /* 1 */
+    min-width: 100%; /* 2 */
+    }
+
+  /* Adjust the position of the line numbers */
+  .gatsby-highlight pre[class*="language-"].line-numbers {
+    padding-left: 2.8em;
   }
-
-/* Adjust the position of the line numbers */
-.gatsby-highlight pre[class*="language-"].line-numbers {
-  padding-left: 2.8em;
-}
-
-
 `

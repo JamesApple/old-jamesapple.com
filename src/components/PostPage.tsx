@@ -8,6 +8,7 @@ import ContentWidth from './ContentWidth'
 import { postTitleTextStyle, systemTextStyle, contentTextStyle } from 'fontStyles'
 import TableOfContents from './TableOfContents'
 import { Link } from 'gatsby'
+import ContentWell from './ContentWell';
 
 interface IPostPageProps {
   displayMarkdown: DisplayMarkdown
@@ -27,11 +28,6 @@ const Date = styled.time`
   ${systemTextStyle}
   display: block;
   margin-bottom: 2rem;
-`
-
-const Well = styled.article`
-  max-width: 80ch;
-  margin: auto;
 `
 
 const PostBody = styled.div`
@@ -73,7 +69,7 @@ export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
           </ContentWidth>
         )}
         <ContentWidth>
-          <Well>
+          <ContentWell>
             {tags.map(tag => (
               <Tag key={tag} to={`/tags/${tag}`}>
                 {tag}
@@ -84,7 +80,7 @@ export default class PostPage extends React.PureComponent<IPostPageProps, {}> {
             <TableOfContents tableOfContents={tableOfContents} />
             <Description>{description}</Description>
             <PostBody dangerouslySetInnerHTML={{ __html: html }} />
-          </Well>
+          </ContentWell>
         </ContentWidth>
       </BaseLayout>
     )
