@@ -2,9 +2,11 @@
 path: /posts/understanding-yield-and-blocks-in-ruby
 date: 2018-05-20
 title: Understanding yield and blocks in Ruby
-description: "It's super easy AND fun!"
 tags: ["javascript", "ruby"]
 headerImage: './myimg.png'
+description: >
+              Description for
+              the site
 ---
 Just want the syntax and some use cases? -> Link to code samples
 Learning ruby from scratch? Ensure you understand the following concepts
@@ -59,8 +61,8 @@ my_array.each { |x| puts x + 1 }
 ```ruby
 my_array = [1, 2, 3]
 my_array.each do |x|
-	y = x + 1
-	puts y
+y = x + 1
+puts y
 end
 
 # > 2
@@ -78,9 +80,9 @@ When `yield` is called within a method, it pauses execution of the current threa
 
 ```ruby
 def method
-    puts "First"
-    yield
-    puts "Third"
+puts "First"
+yield
+puts "Third"
 end
 
 method { puts "Second"; puts `sleep 3`  }
@@ -98,11 +100,11 @@ Everything in Ruby evaluates to a value and `yield` is no different. I understoo
 
 ```ruby
 def array_method(an_array)
-	puts "Starting up!"
-	for each_item in an_array
-		yield each_item
-	end
-	puts "All done"
+puts "Starting up!"
+for each_item in an_array
+yield each_item
+end
+puts "All done"
 end
 
 my_array = [2, 3, 4]
@@ -120,11 +122,11 @@ array_method(my_array) { |thing| puts thing * 2 }
 1. `array_method` is called
 2. `my_array` is passed into the method as an argument
 3. `array_method` begins a loop over each of the 3 items
-   - _3 TIMES_
-   - `yield` passes each_item down to the calling methods block
-   - The calling methods block is evaluated and puts `thing * 2`
-   - control is given back to the method
-   - _REPEAT_
+- _3 TIMES_
+- `yield` passes each_item down to the calling methods block
+- The calling methods block is evaluated and puts `thing * 2`
+- control is given back to the method
+- _REPEAT_
 4. With control now back in the method itself we put string `”That’s all!”`
 5. Complete!
 
@@ -135,11 +137,11 @@ You can return values from the block using the `return` keyword or implicitly re
 
 ```ruby
 def mapper(an_array)
-    new_array = []
-    for each_item in an_array
-        new_array << yield(each_item)
-    end
-    new_array
+new_array = []
+for each_item in an_array
+new_array << yield(each_item)
+end
+new_array
 end
 
 original_array = ["a", "b", "c"]
@@ -158,12 +160,12 @@ puts "My old array was:\n#{original_array}\nbut now I have:\n#{final_array}"
 1. Call `mapper` with `original_array`
 2. `mapper` creates a new array `new_array`
 3. `mapper` begins a loop over each item in `an_array`
-   - _3 TIMES_
-   - `yield` passes each item down to the calling block
-   - The calling block multiplies the `letter` by 2
-   - Calling block _implicitly_ returns the result of this operation to the yield
-   - Back in the method we shovel `<<` the result of the block into our `new_array`
-   - _END_
+- _3 TIMES_
+- `yield` passes each item down to the calling block
+- The calling block multiplies the `letter` by 2
+- Calling block _implicitly_ returns the result of this operation to the yield
+- Back in the method we shovel `<<` the result of the block into our `new_array`
+- _END_
 4. `mapper` implicitly returns the `new_array`
 5. The external `final_array` is set to the return value of `mapper`
 6. Our two arrays `original_array` and its cousin `final_array` are output.
@@ -180,15 +182,15 @@ Here we’ll define `reducer`, a method that will sum an array passed to it as a
 
 ```ruby
 def reducer(an_array, initial_value=0)
-	sum = initial_value
-	for each_item in an_array
-		if block_given?
-			sum = yield sum, each_item
-		else
-			sum += each_item
-		end
-	end
-	sum
+sum = initial_value
+for each_item in an_array
+if block_given?
+sum = yield sum, each_item
+else
+sum += each_item
+end
+end
+sum
 end
 
 p reducer([1, 2, 3])
@@ -207,11 +209,11 @@ _First Call_
 1. `reducer` is called without a block and is passed an array of `[1, 2, 3]`
 2. `sum` is set to `0` from `initial_value`
 3. `reducer` begins a loop for each item in `an_array`
-   - _3 TIMES_
-   - `block_given?` is false
-   - jump to `else`
-   - `sum` is set to `each_item` + `sum`
-   - _END LOOP_
+- _3 TIMES_
+- `block_given?` is false
+- jump to `else`
+- `sum` is set to `each_item` + `sum`
+- _END LOOP_
 4. `sum` is implicitly returned to the caller and is printed as `6`
 
 ---
@@ -221,12 +223,12 @@ _Second Call_
 5. `reducer` is called with an array of `[1, 2, 3]` and an empty array as its initial value `[]`
 6. `sum` in `reducer` is set to `[]`
 7. `reducer` begins a loop for each item in `an_array`
-   - _3 TIMES_
-   - `block_given` is true, so we step in
-   - `reducer` yields `sum` and `each_item` to the block provided
-   - The block provided is passed `sum` for `array` and `each_item` for `item`
-   - The block prepends `item` into `array` and implicitly returns the new array
-   - The new array is passed back into `reduce`
+- _3 TIMES_
+- `block_given` is true, so we step in
+- `reducer` yields `sum` and `each_item` to the block provided
+- The block provided is passed `sum` for `array` and `each_item` for `item`
+- The block prepends `item` into `array` and implicitly returns the new array
+- The new array is passed back into `reduce`
 
 ## Other Notes
 
@@ -238,8 +240,8 @@ If you’re unsure how many arguments may be called, you can set defaults on a b
 
 ```ruby
 def two_args
-    yield "First", "Second"
-    yield "Third"
+yield "First", "Second"
+yield "Third"
 end
 
 two_args { |a, b = "Nothing Passed"| puts "#{a} then #{b}" }
@@ -264,7 +266,7 @@ That doesn’t however mean that they do anything useful with them.
 
 ```ruby
 def my_method
-	puts "From method"
+puts "From method"
 end
 
 my_method { puts "From block"
