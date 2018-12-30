@@ -10,6 +10,12 @@ module.exports = {
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-75513054-1",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: 'post',
