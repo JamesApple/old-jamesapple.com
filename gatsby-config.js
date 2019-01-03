@@ -94,7 +94,7 @@ module.exports = {
       options: {
         host: 'https://www.jamesapple.com',
         sitemap: 'https://www.jamesapple.com/sitemap.xml',
-        policy: [{ userAgent: '*', disallow: '/' }]
+        policy: [{ userAgent: '*', allow: '/' }]
       }
     },
     `gatsby-plugin-sitemap`,
