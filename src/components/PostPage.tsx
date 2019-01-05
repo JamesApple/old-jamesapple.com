@@ -33,6 +33,11 @@ const Date = styled.time`
 const PostBody = styled.div`
   ${contentTextStyle}
   margin-bottom: 2rem;
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+  }
 `
 
 const Description = styled.p`

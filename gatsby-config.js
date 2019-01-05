@@ -12,8 +12,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-75513054-1",
-      },
+        trackingId: 'UA-75513054-1'
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -58,7 +58,7 @@ module.exports = {
               withWebp: { quality: 80 }
             }
           },
-
+          'gatsby-remark-copy-linked-files',
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -106,11 +106,10 @@ module.exports = {
       }
     },
 
-
-  {
-    resolve: `gatsby-plugin-feed`,
-    options: {
-      query: `
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
         {
           site {
             siteMetadata {
@@ -122,20 +121,20 @@ module.exports = {
           }
         }
       `,
-      feeds: [
-        {
-          serialize: ({ query: { site, allMarkdownRemark } }) => {
-            return allMarkdownRemark.edges.map(edge => {
-              return Object.assign({}, edge.node.frontmatter, {
-                description: edge.node.frontmatter.description,
-                date: edge.node.frontmatter.date,
-                url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
-                guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
-                custom_elements: [{ "content:encoded": edge.node.html }],
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.frontmatter.description,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  custom_elements: [{ 'content:encoded': edge.node.html }]
+                })
               })
-            })
-          },
-          query: `
+            },
+            query: `
             {
               allMarkdownRemark(
                 limit: 1000,
@@ -156,11 +155,11 @@ module.exports = {
               }
             }
           `,
-          output: "/rss.xml",
-          title: "JamesApple.com RSS Feed",
-        },
-      ],
-    },
-  },
+            output: '/rss.xml',
+            title: 'JamesApple.com RSS Feed'
+          }
+        ]
+      }
+    }
   ]
 }
