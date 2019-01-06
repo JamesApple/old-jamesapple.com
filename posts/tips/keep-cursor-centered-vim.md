@@ -1,5 +1,4 @@
 ---
-draft: false
 date: 2019-01-05
 tags: ['tips', 'vim']
 title: Centering Vim
