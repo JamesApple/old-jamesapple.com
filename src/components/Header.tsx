@@ -38,10 +38,6 @@ const InternalLink = styled(Link)`
   ${hoverTextStyle}
 `
 
-// const ExternalLink = styled.a`
-//   ${navItemStyles}
-// `
-
 const Logo = styled(BaseLogo)`
   margin: 1.5rem 0;
 `
