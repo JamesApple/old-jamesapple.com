@@ -5,7 +5,8 @@ import {
   systemTextStyle,
   postTitleTextStyle,
   postDescriptionTextStyle,
-  contentTextStyle
+  contentTextStyle,
+  hoverTextStyle
 } from 'fontStyles'
 
 import Image from 'gatsby-image'
@@ -23,9 +24,7 @@ const Title = styled(Link)`
   ${postTitleTextStyle}
   text-decoration: none;
 
-  &:hover {
-    color: black;
-  }
+  ${hoverTextStyle}
 `
 
 const Description = styled.p`
@@ -58,9 +57,8 @@ export default class PostListing extends React.PureComponent<IPostListingProps, 
         <Date>{date}</Date>
         <br />
         <Title to={path}>{title}</Title>
-        {!!headerImage && <HeaderImage fluid={headerImage} />}
-        <Description>{description}</Description>
-        <Excerpt>{excerpt}</Excerpt>
+          {!!headerImage && <HeaderImage fluid={headerImage} />}
+            {( description && <Description>{description}</Description> ) || <Excerpt>{excerpt}</Excerpt> }
       </Container>
     )
   }

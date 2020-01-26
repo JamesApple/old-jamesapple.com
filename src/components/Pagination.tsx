@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'utils/styled-components'
 import { Link } from 'gatsby'
-import { systemTextStyle } from 'fontStyles'
+import { systemTextStyle, hoverTextStyle } from 'fontStyles'
 import { ITheme } from 'theme'
 
 interface PaginationProps {
@@ -28,9 +28,7 @@ const Item = styled.span`
 const PageLink = styled(Link)`
   ${itemStyles}
   user-drag: none;
-  &:hover {
-    color: ${({ theme }: { theme: ITheme }) => theme.gray.dark};
-  }
+  ${hoverTextStyle}
 `
 export default class Pagination extends React.PureComponent<PaginationProps, {}> {
   public render() {

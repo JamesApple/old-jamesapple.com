@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { contentTextStyle } from 'fontStyles'
+import { contentTextStyle, hoverTextStyle } from 'fontStyles'
 import styled from 'utils/styled-components'
 
 interface TableOfContentsProps {
@@ -47,9 +47,7 @@ const Container = styled.nav`
     text-transform: none;
     font-size: 0.75rem;
     padding: 0.5rem;
-    &:hover {
-      color: black;
-    }
+    ${hoverTextStyle}
   }
 `
 

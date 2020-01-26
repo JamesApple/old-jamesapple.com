@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'utils/styled-components'
 import { Link } from 'gatsby'
-import { logoTextStyle, taglineTextStyle } from 'fontStyles';
+import { logoTextStyle, taglineTextStyle, hoverTextStyle } from 'fontStyles';
 
 const Container = styled(Link)`
   text-decoration: none;
@@ -12,10 +12,7 @@ const Container = styled(Link)`
 
 const Name = styled.span`
   ${logoTextStyle};
-
-  &:hover {
-    color: black;
-  }
+  ${hoverTextStyle}
 `
 const Tagline = styled.span`
   ${taglineTextStyle};

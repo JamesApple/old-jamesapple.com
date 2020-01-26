@@ -12,6 +12,14 @@ letter-spacing: 2px;
 font-size: 0.85rem;
 `
 
+export const mainHeaderTextStyle = ({ theme }: { theme: ITheme }) => `
+font-family: ${theme.bodyFamily};
+color: ${theme.gray.dark};
+
+font-size: 1.25rem;
+font-weight: 700;
+`
+
 export const postTitleTextStyle = ({ theme }: { theme: ITheme }) => `
 font-family: ${theme.bodyFamily};
 color: ${theme.gray.dark};
@@ -48,4 +56,10 @@ color: ${theme.gray.dark};
 font-weight: 700;
 font-size: 2rem;
 letter-spacing: 5px;
+`
+
+export const hoverTextStyle = ({ theme }: { theme: ITheme }) => `
+&:hover {
+  color: ${theme.interaction.hoverText}
+}
 `

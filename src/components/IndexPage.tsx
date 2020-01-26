@@ -3,7 +3,7 @@ import * as React from 'react'
 import BaseLayout from 'components/BaseLayout'
 import ContentWell from './ContentWell'
 import styled from 'utils/styled-components'
-import { postTitleTextStyle, systemTextStyle } from 'fontStyles'
+import { systemTextStyle, mainHeaderTextStyle } from 'fontStyles'
 import PostList from './PostList'
 import PreviewMarkdown from 'models/PreviewMarkdown';
 
@@ -12,7 +12,7 @@ interface IndexPageProps {
 }
 
 const Title = styled.h1`
-  ${postTitleTextStyle}
+  ${mainHeaderTextStyle}
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 4rem;
@@ -28,14 +28,13 @@ const Link = styled.a`
 text-decoration: none;
 `
 
-
 export default class IndexPage extends React.PureComponent<IndexPageProps, {}> {
   public render() {
     const { previewMarkdowns } = this.props
     return (
       <BaseLayout>
         <ContentWell>
-          <Title>American Software Engineer Living in Sydney, Australia</Title>
+          <Title>Golang, DevOps, Automation, and Technology</Title>
           <Link href='/posts'>
             <Subtitle>
               Latest Posts

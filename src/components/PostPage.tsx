@@ -5,7 +5,7 @@ import BaseLayout from 'components/BaseLayout'
 import styled from 'utils/styled-components'
 import DisplayMarkdown from 'models/DisplayMarkdown'
 import ContentWidth from './ContentWidth'
-import { postTitleTextStyle, systemTextStyle, contentTextStyle } from 'fontStyles'
+import { postTitleTextStyle, systemTextStyle, contentTextStyle, postDescriptionTextStyle, hoverTextStyle } from 'fontStyles'
 import TableOfContents from './TableOfContents'
 import { Link } from 'gatsby'
 import ContentWell from './ContentWell';
@@ -96,7 +96,7 @@ const PostBody = styled.div`
 `
 
 const Description = styled.p`
-  ${contentTextStyle}
+  ${postDescriptionTextStyle}
   margin-bottom: 2rem;
 `
 
@@ -104,9 +104,7 @@ const Tag = styled(Link)`
   ${systemTextStyle}
   padding: 0.5rem;
   padding-left: 0;
-  &:hover {
-    color: black;
-  }
+  ${hoverTextStyle}
 `
 
 export default class PostPage extends React.PureComponent<IPostPageProps, {}> {

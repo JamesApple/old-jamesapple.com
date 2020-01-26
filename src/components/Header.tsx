@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link } from 'gatsby'
 import BaseLogo from 'components/Logo'
 import styled from 'utils/styled-components'
-import { systemTextStyle } from 'fontStyles'
+import { systemTextStyle, hoverTextStyle } from 'fontStyles'
 import ContentWidth from './ContentWidth'
 
 const NavItems = styled.div`
@@ -31,13 +31,11 @@ export const navItemStyles = (props: any) => `
   ${systemTextStyle(props)}
   padding: 1rem;
   margin: 0 1rem;
-  &:hover {
-    color: black;
-  }
 `
 
 const InternalLink = styled(Link)`
   ${navItemStyles}
+  ${hoverTextStyle}
 `
 
 // const ExternalLink = styled.a`
