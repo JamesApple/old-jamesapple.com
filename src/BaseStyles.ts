@@ -11,6 +11,10 @@ export default createGlobalStyle`
     ${fluidType({ minSize: 14, maxSize: 24 })}
   }
 
+.language-go {
+  -moz-tab-size: 1.5rem !important;
+  tab-size: 1.5rem !important;
+}
   html, body {
     height: 100%;
     width: 100%;

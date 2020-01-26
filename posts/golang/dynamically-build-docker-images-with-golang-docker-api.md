@@ -12,11 +12,24 @@ description: >
 Dynamically building and deploying Docker images recently became a requirement
 in one of my personal projects I've been working on for some time.
 
+## Details
+
+I needed to build an image in a lightning fast manner suitable for local
+development while keeping the same process I use to build images in my CI
+process. Even better, all of this _needed to be completed in under five
+seconds_ as the code is being run in the context of a rest request.
+
+The projects Monorepo meant that the standard `docker build .` would upload the
+sourcecode and dependencies of _six services_. Uploading the build context took
+over ten seconds on its own. I opted to use the Golang REST API library given
+these challenges.
+
+
 ## Simple and straight to the point
 
 `go get github.com/docker/docker`
 
-```golang
+```go
 package main
 
 import (
@@ -54,7 +67,7 @@ func main() {
 	The context io.Reader will be closed by the client call automatically.
 */
 func buildImage(
-	contextTar io.Reader, //
+	contextTar io.Reader,
 	tag string, // "Image Name"
 	dockerfilePath string, // Relative path within the archive to the dockerfile
 ) {
@@ -134,21 +147,4 @@ func tarMyRepo(rootPath string) (io.Reader, error) {
 	return &buffer, nil
 }
 ```
-
-## Details
-
-I needed to build an image in a lightning fast manner suitable for local
-development while keeping the same process I use to build images in my CI
-process. Even better, all of this _needed to be completed in under five
-seconds_ as the code is being run in the context of a rest request.
-
-The projects Monorepo meant that the standard `docker build .` would upload the
-sourcecode and dependencies of _six services_. Uploading the build context took
-over ten seconds on its own. I opted to use the Golang REST API library given
-these challenges.
-
-## What is a TAR and why should I care
-
-## 
-
 
