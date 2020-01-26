@@ -1,5 +1,6 @@
 ---
 date: 2019-01-05
+draft: true
 tags: ['tips', 'vim']
 title: Centering Vim
 path: /tips/centering-vim

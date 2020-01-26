@@ -1,5 +1,5 @@
 ---
-draft: false
+draft: true
 date: 2019-01-03
 tags: ['tips', 'vim']
 title: Tmux-like Zoom for Vim Panes
